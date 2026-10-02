@@ -1,1 +1,23 @@
-{% if component.products|length %}<section class="chocolate-section mood-orbit" data-testid="store-home-mood-orbit" data-mood-orbit><h2 class="chocolate-title">{{ component.title|default('إيش مودك اليوم؟') }}</h2><p>{{ component.subtitle }}</p><div class="mood-orbit__stage"><div class="mood-orbit__nodes">{% for product in component.products %}<button class="mood-orbit__node" data-mood-node data-image="{{ product.image.url }}" data-name="{{ product.name }}" data-price="{{ product.price|money }}" data-url="{{ product.url }}" aria-label="{{ product.name }}" aria-pressed="{{ loop.first ? 'true':'false' }}"><img src="{{ product.image.url }}" alt=""></button>{% endfor %}</div>{% set first=component.products|first %}<article class="mood-orbit__focus"><img data-mood-photo src="{{ first.image.url }}" alt="{{ first.name }}"><div class="mood-orbit__copy"><h3 data-mood-name>{{ first.name }}</h3><strong data-mood-price>{{ first.price|money }}</strong></div></article><button type="button" data-surprise>{{ component.surprise_label|default('فاجئني بالمود') }}</button></div></section>{% endif %}
+<section class="chocolate-section mood-orbit" data-testid="store-home-mood-orbit" data-mood-orbit>
+  <h2 class="chocolate-title">{{ component.title|default('إيش مودك اليوم؟') }}</h2>
+  {% if component.subtitle %}<p class="chocolate-lead">{{ component.subtitle }}</p>{% endif %}
+  {% if component.products|length %}
+    {% set first = component.products|first %}
+    <div class="mood-orbit__stage">
+      <div class="mood-orbit__ring" style="--n:{{ component.products|length }}">
+        {% for product in component.products %}
+          <button type="button" class="mood-orbit__node" style="--i:{{ loop.index0 }};--n:{{ component.products|length }}" data-mood-node data-image="{{ product.image.url }}" data-name="{{ product.name }}" data-price="{{ product.price|money }}" data-url="{{ product.url }}" aria-label="{{ product.name }}" aria-pressed="{{ loop.first ? 'true' : 'false' }}"><span><img src="{{ product.image.url }}" alt="" loading="lazy"></span></button>
+        {% endfor %}
+      </div>
+      <div class="mood-orbit__center"><img data-mood-photo src="{{ first.image.url }}" alt="{{ first.name }}"></div>
+    </div>
+    <div class="mood-orbit__card">
+      <h3 data-mood-name>{{ first.name }}</h3>
+      <strong data-mood-price>{{ first.price|money }}</strong>
+      <a class="chocolate-btn" data-mood-link href="{{ first.url }}">أبي هذا</a>
+      <button type="button" class="chocolate-btn chocolate-btn--ghost mood-orbit__surprise" data-surprise>{{ component.surprise_label|default('فاجئني') }}</button>
+    </div>
+  {% else %}
+    <salla-products-slider source="latest" limit="8" block-title=" "></salla-products-slider>
+  {% endif %}
+</section>
