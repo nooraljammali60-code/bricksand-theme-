@@ -1,1 +1,10 @@
-{% set product=component.product|first %}{% if product %}<section class="chocolate-section spotlight-product" data-testid="store-home-spotlight">{% if component.media %}<img src="{{ component.media }}" alt="{{ product.name }}">{% endif %}<h2 class="chocolate-title">{{ component.title }}</h2><h3>{{ product.name }}</h3><strong>{{ product.price|money }}</strong><p>{{ component.copy }}</p><a href="{{ product.url }}">شوف المنتج</a></section>{% endif %}
+{% set product = component.product|first %}
+<section class="chocolate-section spotlight-product" data-testid="store-home-spotlight">
+  {% if component.media %}<img src="{{ component.media }}" alt="{{ product ? product.name : component.title }}" loading="lazy">{% elseif product and product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% endif %}
+  <div class="editorial-copy">
+    <h2 class="chocolate-title">{{ component.title }}</h2>
+    {% if product %}<h3>{{ product.name }}</h3><strong>{{ product.price|money }}</strong>{% endif %}
+    {% if component.copy %}<p>{{ component.copy }}</p>{% endif %}
+    <div><a class="chocolate-btn" href="{{ product ? product.url : link('products') }}">شوف المنتج</a></div>
+  </div>
+</section>
