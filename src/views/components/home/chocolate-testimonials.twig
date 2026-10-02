@@ -1,11 +1,4 @@
-{% if component.quotes %}
-<section class="chocolate-section" data-testid="store-home-testimonials">
-  <h2 class="chocolate-title">{{ component.title }}</h2>
-  <div class="testimonials-list">
-    {% for line in component.quotes|split("\n") %}{% if line|trim %}
-      {% set parts = line|split(':', 2) %}
-      <blockquote>{% if parts|length > 1 %}<p>{{ parts[1]|trim }}</p><cite>{{ parts[0]|trim }}</cite>{% else %}<p>{{ line|trim }}</p>{% endif %}</blockquote>
-    {% endif %}{% endfor %}
-  </div>
-</section>
-{% endif %}
+{% if component.quotes|trim %}{% set lines = component.quotes|nl2br|split('<br />') %}
+<section class="reviews-section" aria-labelledby="reviews-title"><div class="reviews-head">{% if component.eyebrow %}<span>{{ component.eyebrow }}</span>{% endif %}<h2 id="reviews-title">{{ component.title }}{% if component.title_em %} <em>{{ component.title_em }}</em>{% endif %}</h2></div><div class="reviews-marquee"><div class="reviews-track">
+{% for round in [0,1] %}{% for line in lines %}{% if line|trim %}{% set parts = line|split(':', 2) %}<figure class="review-card"{% if round %} aria-hidden="true"{% endif %}>{% if parts|length > 1 %}<blockquote>{{ parts[1]|trim }}</blockquote><figcaption>{{ parts[0]|trim }}</figcaption>{% else %}<blockquote>{{ line|trim }}</blockquote>{% endif %}</figure>{% endif %}{% endfor %}{% endfor %}
+</div></div></section>{% endif %}
