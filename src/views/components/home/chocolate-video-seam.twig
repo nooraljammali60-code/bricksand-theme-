@@ -1,1 +1,7 @@
-{% if component.video_url or component.poster %}<section class="video-seam" data-testid="store-home-video-seam">{% if component.video_url %}<video autoplay muted loop playsinline preload="metadata" poster="{{ component.poster }}"><source src="{{ component.video_url }}" type="video/mp4"></video>{% elseif component.poster %}<img class="video-seam__poster" src="{{ component.poster }}" alt="{{ component.title }}">{% endif %}<div class="video-seam__content"><h1>{{ component.title }}</h1>{% if component.cta_url %}<a href="{{ component.cta_url }}">{{ component.cta_label }}</a>{% endif %}</div></section>{% endif %}
+<section class="video-seam" data-testid="store-home-video-seam">
+  {% if component.video_url %}<video autoplay muted loop playsinline preload="metadata" {% if component.poster %}poster="{{ component.poster }}"{% endif %}><source src="{{ component.video_url }}" type="video/mp4"></video>{% elseif component.poster %}<img class="video-seam__poster" src="{{ component.poster }}" alt="{{ component.title }}">{% endif %}
+  <div class="video-seam__content">
+    {% if component.title %}<h1>{{ component.title }}</h1>{% endif %}
+    {% if component.cta_label %}<a class="chocolate-btn chocolate-btn--light" href="{{ component.cta_url|default(link('products')) }}">{{ component.cta_label }}</a>{% endif %}
+  </div>
+</section>
