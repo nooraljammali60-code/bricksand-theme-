@@ -1,1 +1,10 @@
-{% if component.media_one or component.media_two %}<section class="chocolate-section" data-testid="store-home-stories"><h2 class="chocolate-title">{{ component.title }}</h2><div class="editorial-grid">{% if component.media_one %}<img src="{{ component.media_one }}" alt="">{% endif %}{% if component.media_two %}<img src="{{ component.media_two }}" alt="">{% endif %}</div>{% if component.cta_url %}<a href="{{ component.cta_url }}">المزيد</a>{% endif %}</section>{% endif %}
+{% if component.media_one or component.media_two %}
+<section class="chocolate-section" data-testid="store-home-stories">
+  <h2 class="chocolate-title">{{ component.title }}</h2>
+  <div class="editorial-grid">
+    {% if component.media_one %}<img src="{{ component.media_one }}" alt="" loading="lazy">{% endif %}
+    {% if component.media_two %}<img src="{{ component.media_two }}" alt="" loading="lazy">{% endif %}
+  </div>
+  {% if component.cta_url %}<div class="section-actions"><a class="chocolate-btn chocolate-btn--ghost" href="{{ component.cta_url }}">المزيد</a></div>{% endif %}
+</section>
+{% endif %}
