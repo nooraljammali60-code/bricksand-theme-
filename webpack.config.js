@@ -45,16 +45,7 @@ class PreviewAssetsMirrorPlugin {
 
 module.exports = {
     entry  : {
-        app     : [asset('styles/app.scss'), asset('js/wishlist.js'), asset('js/app.js'), asset('js/blog.js')],
-        'product-card' : asset('js/partials/product-card.js'),
-        'wishlist-card': asset('js/partials/wishlist-card.js'),
-        'add-product-toast': asset('js/partials/add-product-toast.js'),
-        'digital-files': asset('js/partials/digital-files.js'),
-        checkout: [asset('js/cart.js'), asset('js/thankyou.js')],
-        pages   : [asset('js/loyalty.js'), asset('js/brands.js'),],
-        product : [asset('js/product.js'), asset('js/products.js')],
-        order   : asset('js/order.js'),
-        testimonials   : asset('js/testimonials.js')
+        app: [asset('styles/app.scss'), asset('js/app.js')]
     },
     output : {
         path: public(),
@@ -93,9 +84,7 @@ module.exports = {
     },
     plugins: [
         new ThemeWatcher(),
-        new PreviewAssetsMirrorPlugin(),
         new MiniCssExtractPlugin(),
-        new CopyPlugin({patterns: [{from: asset('images'), to: public('images')}]}),
     ],
     optimization: {
         minimizer: [
