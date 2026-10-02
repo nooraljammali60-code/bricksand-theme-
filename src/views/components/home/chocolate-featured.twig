@@ -1,1 +1,9 @@
-{% if component.products|length %}<section class="chocolate-section" data-testid="store-home-featured"><h2 class="chocolate-title">{{ component.title }}</h2><salla-products-list source="selected" source-value="{{ component.products|map(attribute='id')|join(',') }}"></salla-products-list></section>{% endif %}
+<section class="chocolate-section" data-testid="store-home-featured">
+  <h2 class="chocolate-title">{{ component.title }}</h2>
+  {% if component.products|length %}
+    <salla-products-list source="selected" source-value="{{ component.products|map(attribute='id')|join(',') }}"></salla-products-list>
+  {% else %}
+    <salla-products-list source="latest" limit="8"></salla-products-list>
+  {% endif %}
+  {% if component.cta_label %}<div class="section-actions"><a class="chocolate-btn chocolate-btn--ghost" href="{{ link('products') }}">{{ component.cta_label }}</a></div>{% endif %}
+</section>
