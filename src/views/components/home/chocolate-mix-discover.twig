@@ -1,1 +1,13 @@
-{% if component.products|length %}<section class="chocolate-section" data-testid="store-home-mix-discover"><h2 class="chocolate-title">{{ component.title }}</h2><p>{{ component.note }}</p><div class="product-strip">{% for product in component.products %}<a href="{{ product.url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}"><h3>{{ product.name }}</h3></a>{% endfor %}</div></section>{% endif %}
+<section class="chocolate-section" data-testid="store-home-mix-discover">
+  <h2 class="chocolate-title">{{ component.title }}</h2>
+  {% if component.note %}<p class="chocolate-lead">{{ component.note }}</p>{% endif %}
+  {% if component.products|length %}
+    <div class="product-strip">
+      {% for product in component.products %}
+        <a href="{{ product.url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy"><h3>{{ product.name }}</h3><strong>{{ product.price|money }}</strong></a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <salla-products-slider source="latest" limit="8" block-title=" "></salla-products-slider>
+  {% endif %}
+</section>
