@@ -1,1 +1,10 @@
-{% if component.media %}<section class="chocolate-section editorial-grid" data-testid="store-home-gifting"><img src="{{ component.media }}" alt="{{ component.title }}"><div><h2 class="chocolate-title">{{ component.title }}</h2><p>{{ component.copy }}</p>{% if component.cta_url %}<a href="{{ component.cta_url }}">{{ component.cta_label }}</a>{% endif %}</div></section>{% endif %}
+<section class="chocolate-section chocolate-band" data-testid="store-home-gifting">
+  <div class="chocolate-band-inner editorial-grid">
+    {% if component.media %}<img src="{{ component.media }}" alt="{{ component.title }}" loading="lazy">{% endif %}
+    <div class="editorial-copy">
+      <h2 class="chocolate-title">{{ component.title }}</h2>
+      {% if component.copy %}<p>{{ component.copy }}</p>{% endif %}
+      {% if component.cta_label %}<div><a class="chocolate-btn chocolate-btn--light" href="{{ component.cta_url|default(link('products')) }}">{{ component.cta_label }}</a></div>{% endif %}
+    </div>
+  </div>
+</section>
