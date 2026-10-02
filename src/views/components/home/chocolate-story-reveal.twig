@@ -1,11 +1,5 @@
-<section class="chocolate-section" data-testid="store-home-story-reveal">
-  <div class="editorial-grid">
-    {% if component.media_one %}<img src="{{ component.media_one }}" alt="{{ component.title }}" loading="lazy">{% endif %}
-    <div class="editorial-copy">
-      <h2 class="chocolate-title">{{ component.title }}</h2>
-      {% if component.copy %}<p>{{ component.copy }}</p>{% endif %}
-      {% if component.cta_url %}<div><a class="chocolate-btn" href="{{ component.cta_url }}">اكتشف</a></div>{% endif %}
-    </div>
-    {% if component.media_two %}<img src="{{ component.media_two }}" alt="" loading="lazy">{% endif %}
-  </div>
-</section>
+<section class="first-look"><div class="section-heading">{% if component.eyebrow %}<span>{{ component.eyebrow }}</span>{% endif %}<h2>{{ component.title }}{% if component.title_em %} <em>{{ component.title_em }}</em>{% endif %}</h2></div><div class="look-grid">
+{% if component.media_one %}<a class="look-tall" href="{{ component.url_one|default(link('products')) }}"><img src="{{ component.media_one }}" alt="{{ component.label_one|striptags }}" loading="lazy"><span>{{ component.label_one|nl2br }}</span></a>{% endif %}
+<div class="look-copy">{% if component.copy %}<p>{{ component.copy }}</p>{% endif %}{% if component.highlight %}<strong>{{ component.highlight }}</strong>{% endif %}</div>
+{% if component.media_two %}<a class="look-wide" href="{{ component.url_two|default(link('products')) }}"><img src="{{ component.media_two }}" alt="{{ component.label_two|striptags }}" loading="lazy"><span>{{ component.label_two|nl2br }}</span><svg aria-hidden="true" class="lucide lucide-arrow-up-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 17V7h10"></path><path d="M17 17 7 7"></path></svg></a>{% endif %}
+</div></section>
