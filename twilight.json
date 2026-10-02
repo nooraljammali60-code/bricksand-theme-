@@ -13,21 +13,52 @@
   ],
   "settings": [
     {
-      "id": "brand_accent",
+      "id": "logo_image",
       "type": "string",
-      "format": "color",
-      "label": "لون العلامة",
-      "value": "#5e1712",
-      "required": false
+      "format": "image",
+      "label": "شعار شفاف للهيدر والفوتر",
+      "required": false,
+      "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/4e43c046-fd9f-43ab-889b-840d59ce930b/bricksand-logo-transparent.png"
     },
     {
-      "id": "support_text",
+      "id": "story_url",
       "type": "string",
       "format": "text",
-      "label": "نص الدعم",
-      "value": "",
+      "label": "رابط صفحة حكايتنا",
       "required": false,
-      "multilanguage": true
+      "value": ""
+    },
+    {
+      "id": "menu_image",
+      "type": "string",
+      "format": "image",
+      "label": "صورة القائمة الجانبية",
+      "required": false,
+      "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/0a156aa4-faaa-44d3-a936-d699eb1206f4/p21.webp"
+    },
+    {
+      "id": "whatsapp",
+      "type": "string",
+      "format": "text",
+      "label": "رقم واتساب",
+      "required": false,
+      "value": "966545119510"
+    },
+    {
+      "id": "instagram_url",
+      "type": "string",
+      "format": "text",
+      "label": "رابط إنستغرام",
+      "required": false,
+      "value": "https://instagram.com/bricksand.choco"
+    },
+    {
+      "id": "tiktok_url",
+      "type": "string",
+      "format": "text",
+      "label": "رابط تيك توك",
+      "required": false,
+      "value": "https://www.tiktok.com/@bricksand.choco"
     }
   ],
   "components": [
@@ -42,59 +73,41 @@
           "id": "video_url",
           "type": "string",
           "format": "text",
-          "label": "رابط الفيديو",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/3383f22b-fc61-41e5-bf73-80ef14740a9f/bricksand-film.mp4",
-          "required": false
+          "label": "رابط الفيديو (mp4)",
+          "required": false,
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/3383f22b-fc61-41e5-bf73-80ef14740a9f/bricksand-film.mp4"
         },
         {
           "id": "poster",
           "type": "string",
           "format": "image",
-          "label": "صورة بديلة",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/a5ede8b9-73b1-4065-955f-114306326ec8/bricksand-poster.jpg",
-          "required": false
+          "label": "صورة الغلاف",
+          "required": false,
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/a5ede8b9-73b1-4065-955f-114306326ec8/bricksand-poster.jpg"
+        },
+        {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "حلويات مصنوعة للمشاركة"
         },
         {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "بريكساند شوكلت",
           "required": false,
-          "multilanguage": true
+          "value": "بريكساند"
         },
         {
-          "id": "cta_label",
+          "id": "title_em",
           "type": "string",
           "format": "text",
-          "label": "نص الزر",
-          "value": "تسوّق الآن",
+          "label": "الكلمة المميزة بالعنوان",
           "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "cta_url",
-          "type": "string",
-          "format": "text",
-          "label": "الرابط",
-          "value": "/products",
-          "required": false
-        },
-        {
-          "id": "overlay_opacity",
-          "type": "number",
-          "format": "number",
-          "label": "شفافية الطبقة",
-          "value": 35,
-          "required": false
-        },
-        {
-          "id": "focal_position",
-          "type": "string",
-          "format": "text",
-          "label": "موضع الصورة",
-          "value": "center",
-          "required": false
+          "value": "شوكلت"
         }
       ]
     },
@@ -106,42 +119,71 @@
       "is_default": true,
       "fields": [
         {
-          "id": "title",
+          "id": "eyebrow",
           "type": "string",
           "format": "text",
-          "label": "العنوان",
-          "value": "إيش مودك اليوم؟",
+          "label": "نص صغير فوق العنوان",
           "required": false,
-          "multilanguage": true
+          "value": "اختيار على مزاجك"
+        },
+        {
+          "id": "title_before",
+          "type": "string",
+          "format": "text",
+          "label": "بداية العنوان",
+          "required": false,
+          "value": "إيش"
+        },
+        {
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة",
+          "required": false,
+          "value": "مودك"
+        },
+        {
+          "id": "title_after",
+          "type": "string",
+          "format": "text",
+          "label": "نهاية العنوان",
+          "required": false,
+          "value": "اليوم؟"
         },
         {
           "id": "subtitle",
           "type": "string",
           "format": "textarea",
           "label": "الوصف",
-          "value": "اختر مودك ونقترح لك الحلا المناسب",
           "required": false,
-          "multilanguage": true
+          "value": "اختَر النكهة اللي تشبه مودك واسحب للتنقل"
         },
         {
           "id": "products",
           "type": "items",
           "format": "dropdown-list",
-          "label": "المنتجات",
-          "value": [],
-          "required": false,
+          "label": "منتجات المود (حتى 8)",
           "source": "products",
           "multichoice": true,
-          "searchable": true
+          "searchable": true,
+          "required": false,
+          "value": []
         },
         {
-          "id": "surprise_label",
+          "id": "labels",
           "type": "string",
           "format": "text",
-          "label": "نص زر المفاجأة",
-          "value": "فاجئني",
+          "label": "أسماء الدوائر (افصلي بفاصلة)",
           "required": false,
-          "multilanguage": true
+          "value": "شوكولاتة,كراميل,مقرمش,بيكان,كيك,غني,مشاركة"
+        },
+        {
+          "id": "cta_label",
+          "type": "string",
+          "format": "text",
+          "label": "نص الزر",
+          "required": false,
+          "value": "أبي هذا"
         }
       ]
     },
@@ -153,83 +195,92 @@
       "is_default": false,
       "fields": [
         {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "نكهات بطبقات مختلفة"
+        },
+        {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "من أول نظرة",
           "required": false,
-          "multilanguage": true
+          "value": "من أول"
+        },
+        {
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة بالعنوان",
+          "required": false,
+          "value": "نظرة"
         },
         {
           "id": "media_one",
           "type": "string",
           "format": "image",
-          "label": "الصورة الأولى",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/c6ea4e05-1450-4c6a-8ab2-9825fc354ffc/p02.webp",
-          "required": false
+          "label": "الصورة الطويلة",
+          "required": false,
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/fd67345a-0420-4071-a6b5-6215f8433373/p03.webp"
         },
         {
-          "id": "media_two",
+          "id": "label_one",
           "type": "string",
-          "format": "image",
-          "label": "الصورة الثانية",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/7cc4bb1b-626a-4fe4-9d18-7b9550e58228/p05.webp",
-          "required": false
+          "format": "textarea",
+          "label": "نص الصورة الطويلة",
+          "required": false,
+          "value": "طبقات\nتغيّر المود"
+        },
+        {
+          "id": "url_one",
+          "type": "string",
+          "format": "text",
+          "label": "رابط الصورة الطويلة",
+          "required": false,
+          "value": "/products"
         },
         {
           "id": "copy",
           "type": "string",
           "format": "textarea",
           "label": "النص",
-          "value": "مو لازم تختار بين الطراوة، القرمشة، والصوص الغني — خذهم كلهم",
           "required": false,
-          "multilanguage": true
+          "value": "مو لازم تختار بين الطراوة، القرمشة، والصوص الغني"
         },
         {
-          "id": "cta_url",
+          "id": "highlight",
           "type": "string",
           "format": "text",
-          "label": "الرابط",
-          "value": "/products",
-          "required": false
-        }
-      ]
-    },
-    {
-      "key": "6457883b-c3ad-5b12-8d08-af049fe7c20e",
-      "title": "اختار لذوقك",
-      "icon": "sicon-layout",
-      "path": "home.chocolate-category-playground",
-      "is_default": false,
-      "fields": [
-        {
-          "id": "title",
-          "type": "string",
-          "format": "text",
-          "label": "العنوان",
-          "value": "اختار لذوقك",
+          "label": "النص المميز",
           "required": false,
-          "multilanguage": true
+          "value": "خذهم كلهم"
         },
         {
-          "id": "categories",
-          "type": "items",
-          "format": "dropdown-list",
-          "label": "التصنيفات",
-          "value": [],
+          "id": "media_two",
+          "type": "string",
+          "format": "image",
+          "label": "الصورة العريضة",
           "required": false,
-          "source": "categories",
-          "multichoice": true,
-          "searchable": true
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/5a136f31-c50c-402f-863a-6d1d9f09eb1a/p15.webp"
         },
         {
-          "id": "layout",
+          "id": "label_two",
+          "type": "string",
+          "format": "textarea",
+          "label": "نص الصورة العريضة",
+          "required": false,
+          "value": "براونيز\nبالبيكان"
+        },
+        {
+          "id": "url_two",
           "type": "string",
           "format": "text",
-          "label": "أسلوب العرض",
-          "value": "shapes",
-          "required": false
+          "label": "رابط الصورة العريضة",
+          "required": false,
+          "value": "/products"
         }
       ]
     },
@@ -241,33 +292,47 @@
       "is_default": true,
       "fields": [
         {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "اختيارات تستحق التجربة"
+        },
+        {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "مختاراتنا الحين",
           "required": false,
-          "multilanguage": true
+          "value": "مختاراتنا"
+        },
+        {
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة بالعنوان",
+          "required": false,
+          "value": "الحين"
         },
         {
           "id": "products",
           "type": "items",
           "format": "dropdown-list",
           "label": "المنتجات",
-          "value": [],
-          "required": false,
           "source": "products",
           "multichoice": true,
-          "searchable": true
+          "searchable": true,
+          "required": false,
+          "value": []
         },
         {
           "id": "cta_label",
           "type": "string",
           "format": "text",
           "label": "نص الرابط",
-          "value": "كل المنتجات",
           "required": false,
-          "multilanguage": true
+          "value": "كل المنتجات"
         }
       ]
     },
@@ -279,79 +344,104 @@
       "is_default": false,
       "fields": [
         {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "اختيار للمشاركة"
+        },
+        {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "براوكيز تستاهل",
           "required": false,
-          "multilanguage": true
+          "value": "براوكيز"
+        },
+        {
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة بالعنوان",
+          "required": false,
+          "value": "تستاهل"
         },
         {
           "id": "product",
           "type": "items",
           "format": "dropdown-list",
           "label": "المنتج",
-          "value": [],
-          "required": false,
           "source": "products",
           "multichoice": false,
-          "searchable": true
+          "searchable": true,
+          "required": false,
+          "value": []
         },
         {
           "id": "media",
           "type": "string",
           "format": "image",
-          "label": "صورة إضافية",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/786ec6ff-f9f8-4ff7-8a67-ac6594a44699/p08.webp",
-          "required": false
+          "label": "الصورة",
+          "required": false,
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/0767250a-a3e0-4433-ab5c-33a21e2a66f8/p12.webp"
         },
         {
           "id": "copy",
           "type": "string",
           "format": "textarea",
-          "label": "النص",
-          "value": "اختيار للمشاركة",
+          "label": "الوصف",
           "required": false,
-          "multilanguage": true
+          "value": "براونيز مغطاة بالكوكيز وقطع الشوكولاتة البلجيكية مع عبوتين صوص."
+        },
+        {
+          "id": "cta_label",
+          "type": "string",
+          "format": "text",
+          "label": "نص الزر",
+          "required": false,
+          "value": "شوف البراوكيز"
         }
       ]
     },
     {
-      "key": "8cc48bde-5368-53be-949b-97b4d611defa",
-      "title": "اكتشف المكس",
+      "key": "8978118d-02df-56f4-a8f9-ac39680c5a4b",
+      "title": "آراء العملاء",
       "icon": "sicon-layout",
-      "path": "home.chocolate-mix-discover",
+      "path": "home.chocolate-testimonials",
       "is_default": false,
       "fields": [
+        {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "تجاربكم تهمنا"
+        },
         {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "الحلا على مودك",
           "required": false,
-          "multilanguage": true
+          "value": "آراء"
         },
         {
-          "id": "products",
-          "type": "items",
-          "format": "dropdown-list",
-          "label": "المنتجات",
-          "value": [],
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة بالعنوان",
           "required": false,
-          "source": "products",
-          "multichoice": true,
-          "searchable": true
+          "value": "عملائنا"
         },
         {
-          "id": "note",
+          "id": "quotes",
           "type": "string",
           "format": "textarea",
-          "label": "ملاحظة",
-          "value": "نكهات بطبقات مختلفة",
+          "label": "الآراء (كل رأي بسطر: الاسم: الرأي)",
           "required": false,
-          "multilanguage": true
+          "value": ""
         }
       ]
     },
@@ -363,186 +453,60 @@
       "is_default": false,
       "fields": [
         {
+          "id": "eyebrow",
+          "type": "string",
+          "format": "text",
+          "label": "نص صغير فوق العنوان",
+          "required": false,
+          "value": "هدية بطعم مختلف"
+        },
+        {
           "id": "title",
           "type": "string",
           "format": "text",
           "label": "العنوان",
-          "value": "هدية تقول كل شيء",
           "required": false,
-          "multilanguage": true
+          "value": "هدية تقول"
+        },
+        {
+          "id": "title_em",
+          "type": "string",
+          "format": "text",
+          "label": "الكلمة المميزة بالعنوان",
+          "required": false,
+          "value": "كل شيء"
         },
         {
           "id": "media",
           "type": "string",
           "format": "image",
           "label": "الصورة",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/c06e63c1-84a6-4cf1-be42-59dc9dfdd412/p11.webp",
-          "required": false
+          "required": false,
+          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/0a156aa4-faaa-44d3-a936-d699eb1206f4/p21.webp"
         },
         {
           "id": "copy",
           "type": "string",
           "format": "textarea",
-          "label": "النص",
-          "value": "بوكسات للمشاركة وللحظات اللي تستحق حلا مختلف",
+          "label": "الوصف",
           "required": false,
-          "multilanguage": true
+          "value": "بوكسات للمشاركة وللحظات اللي تستحق حلا مختلف"
         },
         {
           "id": "cta_label",
           "type": "string",
           "format": "text",
           "label": "نص الرابط",
-          "value": "شوف البوكسات",
           "required": false,
-          "multilanguage": true
+          "value": "شوف البوكسات"
         },
         {
           "id": "cta_url",
           "type": "string",
           "format": "text",
           "label": "الرابط",
-          "value": "/products",
-          "required": false
-        }
-      ]
-    },
-    {
-      "key": "8978118d-02df-56f4-a8f9-ac39680c5a4b",
-      "title": "آراء معتمدة",
-      "icon": "sicon-layout",
-      "path": "home.chocolate-testimonials",
-      "is_default": false,
-      "fields": [
-        {
-          "id": "title",
-          "type": "string",
-          "format": "text",
-          "label": "العنوان",
-          "value": "آراء عملائنا",
           "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "quotes",
-          "type": "string",
-          "format": "textarea",
-          "label": "اقتباسات معتمدة فقط",
-          "value": "",
-          "required": false,
-          "multilanguage": true
-        }
-      ]
-    },
-    {
-      "key": "a2b66cc0-8db1-5856-8a63-f0553f17b1f6",
-      "title": "قصص قصيرة",
-      "icon": "sicon-layout",
-      "path": "home.chocolate-stories",
-      "is_default": false,
-      "fields": [
-        {
-          "id": "title",
-          "type": "string",
-          "format": "text",
-          "label": "العنوان",
-          "value": "قصص قصيرة",
-          "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "media_one",
-          "type": "string",
-          "format": "image",
-          "label": "الوسائط الأولى",
-          "value": null,
-          "required": false
-        },
-        {
-          "id": "media_two",
-          "type": "string",
-          "format": "image",
-          "label": "الوسائط الثانية",
-          "value": null,
-          "required": false
-        },
-        {
-          "id": "cta_url",
-          "type": "string",
-          "format": "text",
-          "label": "الرابط",
-          "value": "/products",
-          "required": false
-        }
-      ]
-    },
-    {
-      "key": "386eba5c-0caf-5961-b795-5b0fafe307d1",
-      "title": "الأسئلة والثقة",
-      "icon": "sicon-layout",
-      "path": "home.chocolate-faq-trust",
-      "is_default": false,
-      "fields": [
-        {
-          "id": "title",
-          "type": "string",
-          "format": "text",
-          "label": "العنوان",
-          "value": "الأسئلة الشائعة",
-          "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "content",
-          "type": "string",
-          "format": "textarea",
-          "label": "الأسئلة والسياسات المعتمدة",
-          "value": "",
-          "required": false,
-          "multilanguage": true
-        }
-      ]
-    },
-    {
-      "key": "3840f0c9-8e35-5488-9edf-759a27e8dd41",
-      "title": "حكاية العلامة",
-      "icon": "sicon-layout",
-      "path": "home.chocolate-brand-story",
-      "is_default": false,
-      "fields": [
-        {
-          "id": "title",
-          "type": "string",
-          "format": "text",
-          "label": "العنوان",
-          "value": "حكايتنا",
-          "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "copy",
-          "type": "string",
-          "format": "textarea",
-          "label": "الحكاية",
-          "value": "Bricksand Chocolate — حلويات مصنوعة للمشاركة",
-          "required": false,
-          "multilanguage": true
-        },
-        {
-          "id": "media",
-          "type": "string",
-          "format": "image",
-          "label": "الصورة",
-          "value": "https://bricksand-chocolate.lovable.app/__l5e/assets-v1/acd1db67-aa0a-4210-9766-01141341eebf/p14.webp",
-          "required": false
-        },
-        {
-          "id": "cta_url",
-          "type": "string",
-          "format": "text",
-          "label": "الرابط",
-          "value": "/products",
-          "required": false
+          "value": "/products"
         }
       ]
     }
