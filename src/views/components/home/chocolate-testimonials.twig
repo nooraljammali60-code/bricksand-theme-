@@ -1,1 +1,11 @@
-{% if component.quotes %}<section class="chocolate-section" data-testid="store-home-testimonials"><h2 class="chocolate-title">{{ component.title }}</h2><div>{{ component.quotes }}</div></section>{% endif %}
+{% if component.quotes %}
+<section class="chocolate-section" data-testid="store-home-testimonials">
+  <h2 class="chocolate-title">{{ component.title }}</h2>
+  <div class="testimonials-list">
+    {% for line in component.quotes|split("\n") %}{% if line|trim %}
+      {% set parts = line|split(':', 2) %}
+      <blockquote>{% if parts|length > 1 %}<p>{{ parts[1]|trim }}</p><cite>{{ parts[0]|trim }}</cite>{% else %}<p>{{ line|trim }}</p>{% endif %}</blockquote>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+{% endif %}
