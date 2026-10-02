@@ -41,7 +41,7 @@
       if (!nodes.length) return;
       var q = function(s){ return root.querySelector(s); };
       var photo = q('[data-mood-photo]'), name = q('[data-mood-name]'), price = q('[data-mood-price]'), link = q('[data-mood-link]'), small = q('[data-mood-small]'), add = q('[data-mood-add]'), focus = q('.orbit-focus');
-      var count = nodes.length, active = 0;
+      var count = nodes.reduce(function(m,n){ return Math.max(m, Number(n.dataset.moodNode) + 1); }, 0), active = 0;
       function choose(i){
         active = (i + count) % count; var node = nodes[active];
         nodes.forEach(function(n){ var on = Number(n.dataset.moodNode) === active; n.classList.toggle('is-active', on); n.setAttribute('aria-pressed', String(on)); });
@@ -64,7 +64,15 @@
         stage.addEventListener('touchend', function(e){ var end = e.changedTouches[0] && e.changedTouches[0].clientX; if (start === null || end == null) return; var d = end - start; if (Math.abs(d) > 42 && !e.target.closest('[data-orbit-track]')) choose(active + (d > 0 ? -1 : 1)); start = null; }, {passive:true});
       }
       var track = q('[data-orbit-track]'); if (!track || reduce) return;
-      if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ root.classList.toggle('is-paused', !en[0].isIntersecting); root.classList.toggle('is-visible', en[0].isIntersecting); }, {threshold:.15}).observe(root);
+      var visible = true, last = 0, resume = 0;
+      if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; root.classList.toggle('is-paused', !visible); root.classList.toggle('is-visible', visible); }, {threshold:.15}).observe(root);
+      var pause = function(){ resume = performance.now() + 2500; };
+      track.addEventListener('pointerdown', pause); track.addEventListener('touchstart', pause, {passive:true}); track.addEventListener('wheel', pause, {passive:true});
+      (function step(now){ var dt = last ? now - last : 0; last = now;
+        if (visible && now > resume && track.scrollWidth > track.clientWidth + 4){ var half = (track.scrollWidth - track.clientWidth) / 2; var rtl = getComputedStyle(track).direction === 'rtl';
+          if (rtl){ track.scrollLeft -= dt * .035; if (track.scrollLeft <= -half) track.scrollLeft += half; if (track.scrollLeft >= 0) track.scrollLeft -= half; }
+          else { track.scrollLeft += dt * .035; if (track.scrollLeft >= half) track.scrollLeft -= half; } }
+        requestAnimationFrame(step); })(0);
     });
 
     if (window.salla){
