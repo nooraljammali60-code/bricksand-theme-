@@ -1,0 +1,27 @@
+{% extends "layouts.master" %}
+{% block content %}
+<main class="zn-journal-article-page">
+  <section class="zn-journal-article-hero">
+    <div class="shell zn-journal-article-head">
+      <span class="eyebrow">{{ trans('chocolate.info_blog_eyebrow') }}</span>
+      <h1>{{ article.title }}</h1>
+      {% if article.created_at %}<p class="zn-journal-article-date">{{ article.created_at|date }}</p>{% endif %}
+    </div>
+  </section>
+
+  <section class="zn-journal-article-section">
+    <article class="shell zn-journal-article-card">
+      {% if article.has_image %}
+        <figure class="zn-journal-article-cover">
+          <img src="{{ article.image.url }}" alt="{{ article.image.alt ?: article.title }}">
+        </figure>
+      {% endif %}
+      <div class="content-entry zn-prose zn-journal-article-content">{{ article.body|replace({'&nbsp;':' '})|raw }}</div>
+      <footer class="zn-journal-article-footer">
+        <span>{{ trans('chocolate.info_blog_eyebrow') }}</span>
+        <a href="{{ store.url }}">{{ trans('chocolate.back_home') }} <span aria-hidden="true">←</span></a>
+      </footer>
+    </article>
+  </section>
+</main>
+{% endblock %}

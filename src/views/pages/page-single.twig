@@ -1,0 +1,286 @@
+{% extends "layouts.master" %}
+{% block content %}
+<div class="s-blocks-wrapper s-information-page !mt-0">{% hook 'information_page.information_page' %}</div>
+{% set page_title = page.title|striptags %}
+{% set page_text = page.content|striptags|trim %}
+
+{% if 'من نحن' in page_title or 'About' in page_title or 'about' in page_title %}
+<main class="about-page zn-info-final-page">
+  <header class="policy-hero about-page-hero">
+    <div class="shell">
+      <span class="eyebrow">{{ store.name }}</span>
+      <h1>{{ trans('chocolate.about_title') }}</h1>
+      <p>{{ trans('chocolate.about_intro') }}</p>
+    </div>
+  </header>
+
+  <section class="about-section section about-page-section">
+    <div class="shell about-grid">
+      <div class="about-copy">
+        <span class="eyebrow">{{ trans('chocolate.story') }}</span>
+        <h2 class="title">{{ trans('chocolate.about_story_title') }}</h2>
+        <p class="about-lead">{{ trans('chocolate.about_story_lead') }}</p>
+        <p>{{ trans('chocolate.info_about_philosophy') }}</p>
+
+        <div class="about-points">
+          <div><span>01</span><b>{{ trans('chocolate.point1') }}</b><small>{{ trans('chocolate.info_point1_desc') }}</small></div>
+          <div><span>02</span><b>{{ trans('chocolate.point2') }}</b><small>{{ trans('chocolate.point2_desc') }}</small></div>
+          <div><span>03</span><b>{{ trans('chocolate.point3') }}</b><small>{{ trans('chocolate.info_point3_desc') }}</small></div>
+        </div>
+
+        <div class="about-actions">
+          <a class="btn btn-dark" href="{{ store.url }}/-/c1279180479">{{ trans('chocolate.shop_collection') }}</a>
+          <a class="about-blog-link" href="{{ store.url }}/المدونة/page-60646618">{{ trans('chocolate.blog') }} <span>←</span></a>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <img src="{{ 'images/about.webp'|asset }}" alt="{{ store.name }}" loading="eager"/>
+        <div class="about-visual-card">
+          <img src="{{ 'images/brand-wordmark.webp'|asset }}" alt="{{ store.name }}"/>
+          <p>{{ trans('chocolate.about_visual') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if page_text and page_text != page_title and page_text != 'من نحن' %}
+  <section class="zn-info-final-extra section">
+    <div class="shell"><article class="content-entry zn-info-final-card">{{ page.content|raw }}</article></div>
+  </section>
+  {% endif %}
+</main>
+
+{% elseif 'الاستبدال' in page_title or 'الاسترجاع' in page_title or 'Returns' in page_title or 'Exchange' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero">
+    <div class="shell"><span class="eyebrow">{{ trans('chocolate.policy_eyebrow') }}</span><h1>{{ trans('chocolate.info_returns_title') }}</h1><p>{{ trans('chocolate.info_returns_intro') }}</p></div>
+  </header>
+  <div class="policy-layout shell">
+    <aside class="policy-summary">
+      <span class="eyebrow">{{ trans('chocolate.policy_summary') }}</span>
+      <h2>{{ trans('chocolate.info_returns_summary_title') }}</h2>
+      <p>{{ trans('chocolate.info_returns_summary_desc') }}</p>
+      <div class="policy-timing"><strong>{{ trans('chocolate.policy_24') }}</strong><span>{{ trans('chocolate.info_returns_24_desc') }}</span></div>
+      <p class="policy-contact">{{ trans('chocolate.info_returns_contact_note') }}</p>
+    </aside>
+    <article class="policy-content content-entry zn-info-final-card">
+      <h2>{{ trans('chocolate.info_returns_cases_title') }}</h2>
+      <ul>
+        <li>{{ trans('chocolate.info_returns_case1') }}</li>
+        <li>{{ trans('chocolate.info_returns_case2') }}</li>
+        <li>{{ trans('chocolate.info_returns_case3') }}</li>
+      </ul>
+      <h2>{{ trans('chocolate.info_returns_before_title') }}</h2>
+      <p>{{ trans('chocolate.info_returns_before_desc') }}</p>
+      <h2>{{ trans('chocolate.info_returns_howto_title') }}</h2>
+      <p>{{ trans('chocolate.info_returns_howto_desc') }}</p>
+      {% if page_text and page_text != page_title %}<div class="zn-info-final-admin-content">{{ page.content|raw }}</div>{% endif %}
+    </article>
+  </div>
+</main>
+
+{% elseif 'الشحن' in page_title or 'التوصيل' in page_title or 'Shipping' in page_title or 'Delivery' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ trans('chocolate.info_shipping_eyebrow') }}</span><h1>{{ trans('chocolate.shipping_delivery') }}</h1><p>{{ trans('chocolate.info_shipping_intro') }}</p></div></header>
+  <div class="policy-layout shell">
+    <aside class="policy-summary"><span class="eyebrow">{{ store.name }}</span><h2>{{ trans('chocolate.info_shipping_summary_title') }}</h2><p>{{ trans('chocolate.info_shipping_summary_desc') }}</p><div class="policy-timing"><strong>01</strong><span>{{ trans('chocolate.info_shipping_step1') }}</span></div><div class="policy-timing"><strong>02</strong><span>{{ trans('chocolate.info_shipping_step2') }}</span></div><div class="policy-timing"><strong>03</strong><span>{{ trans('chocolate.info_shipping_step3') }}</span></div></aside>
+    <article class="policy-content content-entry zn-info-final-card">
+      <h2>{{ trans('chocolate.info_shipping_prep_title') }}</h2><p>{{ trans('chocolate.info_shipping_prep_desc') }}</p>
+      <h2>{{ trans('chocolate.info_shipping_address_title') }}</h2><p>{{ trans('chocolate.info_shipping_address_desc') }}</p>
+      <h2>{{ trans('chocolate.info_shipping_tracking_title') }}</h2><p>{{ trans('chocolate.info_shipping_tracking_desc') }}</p>
+      {% if page_text and page_text != page_title %}<div class="zn-info-final-admin-content">{{ page.content|raw }}</div>{% endif %}
+    </article>
+  </div>
+</main>
+
+{% elseif 'الخصوصية' in page_title or 'Privacy' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ trans('chocolate.info_privacy_eyebrow') }}</span><h1>{{ trans('chocolate.info_privacy_title') }}</h1><p>{{ trans('chocolate.info_privacy_intro') }}</p></div></header>
+  <div class="policy-layout shell">
+    <aside class="policy-summary"><span class="eyebrow">{{ trans('chocolate.info_privacy_summary_eyebrow') }}</span><h2>{{ trans('chocolate.info_privacy_summary_title') }}</h2><p>{{ trans('chocolate.info_privacy_summary_desc') }}</p></aside>
+    <article class="policy-content content-entry zn-info-final-card">
+      <h2>{{ trans('chocolate.info_privacy_data_title') }}</h2><p>{{ trans('chocolate.info_privacy_data_desc') }}</p>
+      <h2>{{ trans('chocolate.info_privacy_usage_title') }}</h2><p>{{ trans('chocolate.info_privacy_usage_desc') }}</p>
+      <h2>{{ trans('chocolate.info_privacy_sharing_title') }}</h2><p>{{ trans('chocolate.info_privacy_sharing_desc') }}</p>
+      <h2>{{ trans('chocolate.info_privacy_contact_title') }}</h2><p>{{ trans('chocolate.info_privacy_contact_desc') }}</p>
+      {% if page_text and page_text != page_title %}<div class="zn-info-final-admin-content">{{ page.content|raw }}</div>{% endif %}
+    </article>
+  </div>
+</main>
+
+{% elseif 'الشروط' in page_title or 'الأحكام' in page_title or 'Terms' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ store.name }}</span><h1>{{ trans('chocolate.terms') }}</h1><p>{{ trans('chocolate.info_terms_intro') }}</p></div></header>
+  <div class="policy-layout shell">
+    <aside class="policy-summary"><span class="eyebrow">{{ trans('chocolate.info_terms_summary_eyebrow') }}</span><h2>{{ trans('chocolate.info_terms_summary_title') }}</h2><p>{{ trans('chocolate.info_terms_summary_desc') }}</p></aside>
+    <article class="policy-content content-entry zn-info-final-card">
+      <h2>{{ trans('chocolate.info_terms_products_title') }}</h2><p>{{ trans('chocolate.info_terms_products_desc') }}</p>
+      <h2>{{ trans('chocolate.info_terms_orders_title') }}</h2><p>{{ trans('chocolate.info_terms_orders_desc') }}</p>
+      <h2>{{ trans('chocolate.info_terms_payment_title') }}</h2><p>{{ trans('chocolate.info_terms_payment_desc') }}</p>
+      <h2>{{ trans('chocolate.info_terms_returns_title') }}</h2><p>{{ trans('chocolate.info_terms_returns_desc') }}</p>
+      {% if page_text and page_text != page_title %}<div class="zn-info-final-admin-content">{{ page.content|raw }}</div>{% endif %}
+    </article>
+  </div>
+</main>
+
+{% elseif 'تواصل' in page_title or 'اتصل' in page_title or 'Contact' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ trans('chocolate.policy_eyebrow') }}</span><h1>{{ trans('chocolate.contact_us') }}</h1><p>{{ trans('chocolate.info_contact_intro') }}</p></div></header>
+  <section class="zn-info-final-contact section">
+    <div class="shell zn-info-final-contact-grid">
+      <div class="zn-info-final-contact-copy"><span class="eyebrow">{{ store.name }}</span><h2>{{ trans('chocolate.info_contact_copy_title') }}</h2><p>{{ trans('chocolate.info_contact_copy_desc') }}</p></div>
+      <div class="zn-info-final-contact-links">
+        {% if store.contacts.mobile %}<a href="tel:{{ store.contacts.mobile }}"><span>{{ trans('chocolate.info_contact_mobile_label') }}</span><strong>{{ store.contacts.mobile }}</strong></a>{% endif %}
+        {% if store.contacts.whatsapp %}<a href="{{ store.contacts.whatsapp }}" target="_blank" rel="noopener"><span>{{ trans('chocolate.info_contact_whatsapp_label') }}</span><strong>{{ trans('chocolate.info_contact_whatsapp_cta') }}</strong></a>{% endif %}
+        {% if store.social.instagram %}<a href="{{ store.social.instagram }}" target="_blank" rel="noopener"><span>{{ trans('chocolate.info_contact_instagram_label') }}</span><strong>{{ store.name }}</strong></a>{% endif %}
+      </div>
+    </div>
+    {% if page_text and page_text != page_title %}<div class="shell"><article class="content-entry zn-info-final-card zn-info-final-contact-extra">{{ page.content|raw }}</article></div>{% endif %}
+  </section>
+</main>
+
+{% elseif 'مقاس' in page_title or 'Size' in page_title %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ trans('chocolate.info_sizeguide_eyebrow') }}</span><h1>{{ trans('chocolate.info_sizeguide_title') }}</h1><p>{{ trans('chocolate.info_sizeguide_intro') }}</p></div></header>
+  <div class="policy-layout shell">
+    <aside class="policy-summary"><span class="eyebrow">{{ trans('chocolate.info_sizeguide_tip_eyebrow') }}</span><h2>{{ trans('chocolate.info_sizeguide_tip_title') }}</h2><p>{{ trans('chocolate.info_sizeguide_tip_desc') }}</p></aside>
+    <article class="policy-content content-entry zn-info-final-card"><h2>{{ trans('chocolate.info_sizeguide_choose_title') }}</h2><p>{{ trans('chocolate.info_sizeguide_choose_desc') }}</p>{% if page_text and page_text != page_title %}<div class="zn-info-final-admin-content">{{ page.content|raw }}</div>{% endif %}</article>
+  </div>
+</main>
+
+{% elseif 'المدونة' in page_title or 'Blog' in page_title %}
+<!-- THEME_V30_SIX_CARDS_ONLY -->
+<main class="zn-blog-v29 zn-blog-v30">
+  <section class="zn-blog-v29-hero">
+    <div class="shell zn-blog-v29-hero-inner">
+      <div class="zn-blog-v29-hero-copy">
+        <span class="eyebrow">{{ trans('chocolate.info_blog_eyebrow') }}</span>
+        <h1>{{ trans('chocolate.info_blog_title') }}</h1>
+        <p>{{ trans('chocolate.info_blog_intro') }}</p>
+      </div>
+      <div class="zn-blog-v29-monogram" aria-hidden="true">
+        <span>{{ trans('chocolate.brand_initial') }}</span>
+        <small>{{ trans('chocolate.info_blog_monogram_label') }}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="zn-blog-v29-section">
+    <div class="shell">
+      <div class="zn-blog-v29-heading">
+        <div>
+          <span class="eyebrow">{{ trans('chocolate.info_blog_edit_eyebrow') }}</span>
+          <h2>{{ trans('chocolate.info_blog_edit_title') }}</h2>
+        </div>
+        <p>{{ trans('chocolate.info_blog_edit_desc') }}</p>
+      </div>
+
+      <div class="zn-blog-v30-grid">
+
+        <article class="zn-blog-v30-card zn-blog-v30-card--hero">
+          <figure><img src="{{ 'images/hero.webp'|asset }}" alt="كيف تختارين الحلوى المناسبة" loading="eager"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog1_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog1_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog1_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog1_p2') }}</p>
+            <div class="zn-blog-v29-tips"><b>{{ trans('chocolate.info_blog1_tips_label') }}</b><span>{{ trans('chocolate.info_blog1_tip1') }}</span><span>{{ trans('chocolate.info_blog1_tip2') }}</span><span>{{ trans('chocolate.info_blog1_tip3') }}</span><span>{{ trans('chocolate.info_blog1_tip4') }}</span></div>
+          </div>
+        </article>
+
+        <article class="zn-blog-v30-card">
+          <figure><img src="{{ 'images/model.webp'|asset }}" alt="{{ trans('chocolate.info_blog2_title') }}" loading="lazy"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog2_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog2_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog2_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog2_p2') }}</p>
+            <div class="zn-blog-v29-tips"><b>{{ trans('chocolate.info_blog2_tips_label') }}</b><span>{{ trans('chocolate.info_blog2_tip1') }}</span><span>{{ trans('chocolate.info_blog2_tip2') }}</span><span>{{ trans('chocolate.info_blog2_tip3') }}</span></div>
+          </div>
+        </article>
+
+        <article class="zn-blog-v30-card">
+          <figure><img src="{{ 'images/new-arrivals.webp'|asset }}" alt="{{ trans('chocolate.info_blog3_title') }}" loading="lazy"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog3_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog3_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog3_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog3_p2') }}</p>
+          </div>
+        </article>
+
+        <article class="zn-blog-v30-card">
+          <figure><img src="{{ 'images/about.webp'|asset }}" alt="{{ trans('chocolate.info_blog4_title') }}" loading="lazy"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog4_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog4_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog4_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog4_p2') }}</p>
+          </div>
+        </article>
+
+        <article class="zn-blog-v30-card">
+          <figure><img src="{{ 'images/occasion.webp'|asset }}" alt="{{ trans('chocolate.info_blog5_title') }}" loading="lazy"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog5_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog5_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog5_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog5_p2') }}</p>
+          </div>
+        </article>
+
+        <article class="zn-blog-v30-card">
+          <figure><img src="{{ 'images/hero.webp'|asset }}" alt="{{ trans('chocolate.info_blog6_title') }}" loading="lazy"></figure>
+          <div class="zn-blog-v30-copy">
+            <span class="eyebrow">{{ trans('chocolate.info_blog6_eyebrow') }}</span>
+            <h3>{{ trans('chocolate.info_blog6_title') }}</h3>
+            <p>{{ trans('chocolate.info_blog6_p1') }}</p>
+            <p>{{ trans('chocolate.info_blog6_p2') }}</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+{% if page_text and page_text != page_title and page_text != 'المدونة' %}
+  <section class="zn-blog-v29-admin">
+    <div class="shell">
+      <article class="content-entry zn-info-final-card">{{ page.content|raw }}</article>
+    </div>
+  </section>
+  {% endif %}
+</main>
+
+{% else %}
+<main class="policy-page zn-info-final-page">
+  <header class="policy-hero"><div class="shell"><span class="eyebrow">{{ store.name }}</span><h1>{{ page.title }}</h1></div></header>
+  <section class="section"><div class="shell"><article class="content-entry zn-info-final-card">{{ page.content|raw }}</article></div></section>
+</main>
+{% endif %}
+
+<!-- THEME_V29_IMAGE_FALLBACK -->
+<script>
+(function(){
+  const fallback = "{{ 'images/placeholder.png'|asset }}";
+  const repair = function(img){
+    if (!img || img.dataset.znFallbackApplied === '1') return;
+    img.dataset.znFallbackApplied = '1';
+    const useFallback = function(){
+      if (img.src !== fallback) {
+        img.src = fallback;
+        img.classList.add('zn-image-fallback');
+      }
+    };
+    img.addEventListener('error', useFallback, { once:true });
+    if (img.complete && img.naturalWidth === 0) useFallback();
+  };
+  const run = function(){
+    document.querySelectorAll('.zn-info-final-page img, .zn-blog-v29 img').forEach(repair);
+  };
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', run, { once:true })
+    : run();
+})();
+</script>
+{% endblock %}

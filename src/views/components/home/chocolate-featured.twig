@@ -1,0 +1,1 @@
+{% if component.products|length %}<section class="chocolate-section" data-testid="store-home-featured"><h2 class="chocolate-title">{{ component.title }}</h2><salla-products-list source="selected" source-value="{{ component.products|map(attribute='id')|join(',') }}"></salla-products-list></section>{% endif %}

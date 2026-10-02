@@ -1,0 +1,54 @@
+{% extends "layouts.master" %}
+{% block content %}
+<main class="zn-journal-page">
+  <section class="zn-journal-hero">
+    <div class="shell zn-journal-hero-inner">
+      <div>
+        <span class="eyebrow">{{ trans('chocolate.info_blog_eyebrow') }}</span>
+        <h1>{{ trans('chocolate.blog') }}</h1>
+        <p>{{ trans('chocolate.journal_intro') }}</p>
+      </div>
+      <div class="zn-journal-number" aria-hidden="true">J</div>
+    </div>
+  </section>
+
+  <section class="zn-journal-section">
+    <div class="shell">
+      <div class="zn-journal-heading">
+        <div>
+          <span class="eyebrow">{{ trans('chocolate.latest_stories') }}</span>
+          <h2>{{ trans('chocolate.latest_articles') }}</h2>
+        </div>
+        <span class="zn-journal-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="zn-journal-grid">
+        {% for article in articles %}
+          <article class="zn-journal-card {{ loop.first ? 'is-featured' : '' }}">
+            <a class="zn-journal-media" href="{{ article.url }}" aria-label="{{ article.title }}">
+              {% if article.has_image %}
+                <img src="{{ article.image.url }}" alt="{{ article.image.alt ?: article.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}">
+              {% else %}
+                <img src="{{ 'images/hero.webp'|asset }}" alt="" loading="lazy">
+              {% endif %}
+              <span class="zn-journal-index">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</span>
+            </a>
+            <div class="zn-journal-body">
+              {% if article.created_at %}<span class="zn-journal-date">{{ article.created_at|date }}</span>{% endif %}
+              <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+              {% if article.summary %}<p>{{ article.summary|striptags }}</p>{% endif %}
+              <a class="zn-journal-read" href="{{ article.url }}">{{ trans('chocolate.journal_read_article') }} <span aria-hidden="true">←</span></a>
+            </div>
+          </article>
+        {% else %}
+          <div class="zn-journal-empty">
+            <span class="eyebrow">{{ trans('chocolate.info_blog_eyebrow') }}</span>
+            <h2>{{ trans('chocolate.journal_empty_title') }}</h2>
+            <p>{{ trans('chocolate.journal_empty_desc') }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

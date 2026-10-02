@@ -1,0 +1,735 @@
+{
+  "name": {
+    "ar": "Chocolate by Bricksand",
+    "en": "Chocolate by Bricksand"
+  },
+  "repository": "https://github.com/merchant/chocolate-by-bricksand",
+  "author_email": "theme@placeholder.invalid",
+  "features": [
+    "breadcrumb",
+    "unite-cards-height",
+    "component-featured-products",
+    "component-store-features"
+  ],
+  "settings": [
+    {
+      "id": "brand_accent",
+      "type": "string",
+      "format": "color",
+      "label": {
+        "ar": "لون العلامة",
+        "en": "Brand Accent"
+      },
+      "value": "#501010",
+      "required": false
+    },
+    {
+      "id": "support_text",
+      "type": "string",
+      "format": "text",
+      "label": {
+        "ar": "نص الدعم",
+        "en": "Support Text"
+      },
+      "value": "",
+      "required": false,
+      "multilanguage": true
+    }
+  ],
+  "components": [
+    {
+      "key": "56e4deb8-0b13-533a-a488-656814656a66",
+      "title": {
+        "ar": "الفيديو السينمائي",
+        "en": "Video Seam"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-video-seam",
+      "is_default": true,
+      "fields": [
+        {
+          "id": "video_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "رابط الفيديو",
+            "en": "Video Url"
+          },
+          "value": "",
+          "required": false
+        },
+        {
+          "id": "poster",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "صورة بديلة",
+            "en": "Poster"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "cta_label",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "نص الزر",
+            "en": "Cta Label"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "cta_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "الرابط",
+            "en": "Cta Url"
+          },
+          "value": "",
+          "required": false
+        },
+        {
+          "id": "overlay_opacity",
+          "type": "number",
+          "format": "number",
+          "label": {
+            "ar": "شفافية الطبقة",
+            "en": "Overlay Opacity"
+          },
+          "value": 35,
+          "required": false
+        },
+        {
+          "id": "focal_position",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "موضع الصورة",
+            "en": "Focal Position"
+          },
+          "value": "center",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "463ee2ec-8de8-5658-b23a-b51cde8d341d",
+      "title": {
+        "ar": "إيش مودك اليوم؟",
+        "en": "Mood Orbit"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-mood-orbit",
+      "is_default": true,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "الوصف",
+            "en": "Subtitle"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "products",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": {
+            "ar": "المنتجات",
+            "en": "Products"
+          },
+          "value": [],
+          "required": false,
+          "source": "Products",
+          "multichoice": true,
+          "searchable": true
+        },
+        {
+          "id": "surprise_label",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "نص زر المفاجأة",
+            "en": "Surprise Label"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "d6c8b0e2-8a4d-5b88-baf9-d128d806423c",
+      "title": {
+        "ar": "من أول نظرة",
+        "en": "Story Reveal"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-story-reveal",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "media_one",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الصورة الأولى",
+            "en": "Media One"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "media_two",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الصورة الثانية",
+            "en": "Media Two"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "copy",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "النص",
+            "en": "Copy"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "cta_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "الرابط",
+            "en": "Cta Url"
+          },
+          "value": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "6457883b-c3ad-5b12-8d08-af049fe7c20e",
+      "title": {
+        "ar": "اختار لذوقك",
+        "en": "Category Playground"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-category-playground",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "categories",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": {
+            "ar": "التصنيفات",
+            "en": "Categories"
+          },
+          "value": [],
+          "required": false,
+          "source": "Categories",
+          "multichoice": true,
+          "searchable": true
+        },
+        {
+          "id": "layout",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "أسلوب العرض",
+            "en": "Layout"
+          },
+          "value": "shapes",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "84c3e16c-1202-51d1-9645-7e5a3efee460",
+      "title": {
+        "ar": "مختاراتنا",
+        "en": "Featured"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-featured",
+      "is_default": true,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "products",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": {
+            "ar": "المنتجات",
+            "en": "Products"
+          },
+          "value": [],
+          "required": false,
+          "source": "Products",
+          "multichoice": true,
+          "searchable": true
+        },
+        {
+          "id": "cta_label",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "نص الرابط",
+            "en": "Cta Label"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "317b579c-5d1a-5508-a518-c0204c5a5d41",
+      "title": {
+        "ar": "القطعة اللي تستاهل",
+        "en": "Spotlight"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-spotlight",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "product",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": {
+            "ar": "المنتج",
+            "en": "Product"
+          },
+          "value": [],
+          "required": false,
+          "source": "Products",
+          "multichoice": false,
+          "searchable": true
+        },
+        {
+          "id": "media",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "صورة إضافية",
+            "en": "Media"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "copy",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "النص",
+            "en": "Copy"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "8cc48bde-5368-53be-949b-97b4d611defa",
+      "title": {
+        "ar": "اكتشف المكس",
+        "en": "Mix Discover"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-mix-discover",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "products",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": {
+            "ar": "المنتجات",
+            "en": "Products"
+          },
+          "value": [],
+          "required": false,
+          "source": "Products",
+          "multichoice": true,
+          "searchable": true
+        },
+        {
+          "id": "note",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "ملاحظة",
+            "en": "Note"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "029fa4b2-ef27-59ea-b462-a5d6000cfcc7",
+      "title": {
+        "ar": "فصل الهدايا",
+        "en": "Gifting"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-gifting",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "media",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Media"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "copy",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "النص",
+            "en": "Copy"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "cta_label",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "نص الرابط",
+            "en": "Cta Label"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "cta_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "الرابط",
+            "en": "Cta Url"
+          },
+          "value": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "8978118d-02df-56f4-a8f9-ac39680c5a4b",
+      "title": {
+        "ar": "آراء معتمدة",
+        "en": "Testimonials"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-testimonials",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "quotes",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "اقتباسات معتمدة فقط",
+            "en": "Quotes"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "a2b66cc0-8db1-5856-8a63-f0553f17b1f6",
+      "title": {
+        "ar": "قصص قصيرة",
+        "en": "Stories"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-stories",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "media_one",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الوسائط الأولى",
+            "en": "Media One"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "media_two",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الوسائط الثانية",
+            "en": "Media Two"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "cta_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "الرابط",
+            "en": "Cta Url"
+          },
+          "value": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "386eba5c-0caf-5961-b795-5b0fafe307d1",
+      "title": {
+        "ar": "الأسئلة والثقة",
+        "en": "Faq Trust"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-faq-trust",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "content",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "الأسئلة والسياسات المعتمدة",
+            "en": "Content"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        }
+      ]
+    },
+    {
+      "key": "3840f0c9-8e35-5488-9edf-759a27e8dd41",
+      "title": {
+        "ar": "حكاية العلامة",
+        "en": "Brand Story"
+      },
+      "icon": "sicon-layout",
+      "path": "home.chocolate-brand-story",
+      "is_default": false,
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "copy",
+          "type": "string",
+          "format": "textarea",
+          "label": {
+            "ar": "الحكاية",
+            "en": "Copy"
+          },
+          "value": "",
+          "required": false,
+          "multilanguage": true
+        },
+        {
+          "id": "media",
+          "type": "string",
+          "format": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Media"
+          },
+          "value": null,
+          "required": false
+        },
+        {
+          "id": "cta_url",
+          "type": "string",
+          "format": "text",
+          "label": {
+            "ar": "الرابط",
+            "en": "Cta Url"
+          },
+          "value": "",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "support_url": "https://help.salla.sa",
+  "description": {
+    "ar": "ثيم حلويات سعودي معاصر",
+    "en": "Contemporary Saudi dessert theme"
+  }
+}

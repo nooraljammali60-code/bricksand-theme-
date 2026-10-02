@@ -1,0 +1,16 @@
+{% extends "layouts.master" %}
+{% block content %}
+<section class="zn-account-page">
+  <header class="zn-inner-hero"><div class="shell"><span class="eyebrow">{{ trans('chocolate.account_eyebrow') }}</span><h1>{{ page.title }}</h1><p>{{ trans('chocolate.account_intro') }}</p></div></header>
+  <div class="shell zn-account-layout">
+    <aside class="zn-account-sidebar">
+      {% if is_page('customer.profile') %}<div class="zn-account-avatar"><salla-file-upload data-testid="store-profile-avatar-upload" profile-image value="{{ user.avatar }}"></salla-file-upload></div>{% endif %}
+      <salla-user-menu data-testid="store-sidebar-user-menu" inline></salla-user-menu>
+    </aside>
+    <div class="zn-account-content">
+      {% block inner_title %}<div class="zn-page-title"><span class="eyebrow">{{ trans('chocolate.my_chocolate') }}</span><h2>{{ page.title }}</h2></div>{% endblock %}
+      {% block inner_content %}{% endblock %}
+    </div>
+  </div>
+</section>
+{% endblock %}
