@@ -8,16 +8,12 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div class="container mb-20">
-
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
-        <nav class="breadcrumbs w-full py-5">
+    <main class="zn-page"><div class="shell">
+        <nav class="breadcrumbs" aria-label="مسار التنقل">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
-
-        <div class="flex justify-between pt-2 pb-6">
-            <h2 class="font-bold mb-6 md:mb-0">{{ page.title }}</h2>
-        </div>
+        <span class="eyebrow">Bricksand Chocolate</span>
+        <h1 class="zn-page-title">{{ page.title }}</h1>
 
         {% if brands|length %}
             <!-- brands nav -->
@@ -37,7 +33,7 @@
             </div>
             <!-- end:: brands nav -->
 
-            <div class="px-8 xl:px-0">
+            <div>
 
                 {% hook 'brands:index.items.start' %}
 
@@ -50,9 +46,9 @@
                             </span>
                             <div class="bg-border-color h-px flex-1"></div>
                         </div>
-                        <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 grid-flow-row gap-4 md:gap-8">
+                        <div class="zn-brand-grid">
                             {% for brand in brandGroup %}
-                                <a data-testid="store-brand-item" href="{{ brand.url }}" class="brand-item">
+                                <a data-testid="store-brand-item" href="{{ brand.url }}" class="zn-brand-card">
                                     <img class="max-h-full" width="400" height="300" src="{{ brand.logo }}" alt="{{ brand.name }}">
                                 </a>
                             {% endfor %}
@@ -72,7 +68,7 @@
                 <small>{{ trans('pages.brands.try_again') }}</small>
             </div>
         {% endif %}
-    </div>
+    </div></main>
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'pages.js' | asset }}"></script>
