@@ -81,7 +81,7 @@ salla-product-card,.s-product-card-entry{background:transparent!important;border
 .zn-product-options{margin-top:1rem}.product-reviews{padding-block:2rem}
 .related .product-grid:empty{min-height:10rem}
 @media(max-width:560px){.s-product-card-image,.s-product-card-image-container{height:17rem!important}.s-product-card-content{display:block!important}.s-product-card-content-title,.s-product-card-content-title a{font-size:.82rem!important}.s-product-card-content-sub{margin-top:.4rem!important}.s-product-card-content-footer salla-add-product-button button{font-size:.75rem!important}}
-</style></head><body class="site-shell {% hook 'body:classes' %}">{% hook 'body:start' %}{% component 'header.header' %}<main id="main-content">{% block content %}{% endblock %}</main>{% component 'footer.footer' %}<salla-add-product-toast></salla-add-product-toast>{% block scripts %}{% endblock %}{% hook 'body:end' %}<script>(function(){
+</style></head><body class="site-shell {% hook 'body:classes' %}">{% hook 'body:start' %}{% component 'header.header' %}<main id="main-content">{% block content %}{% endblock %}</main>{% component 'footer.footer' %}<salla-add-product-toast></salla-add-product-toast>{% block scripts %}{% endblock %}{% hook 'body:end' %}<style id="bricksand-price-fix">.product-info h3{margin:0}.product-info strong,.orbit-copy [data-mood-price],.purchase-price strong,.purchase-price del{display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}.product-info strong i,.orbit-copy [data-mood-price] i,.purchase-price i{display:inline-block!important;font-size:.9em}.purchase-price{display:flex;align-items:center;gap:.75rem}.purchase-description{display:block;clear:both;line-height:2}.purchase-description>*{margin-block:0 .8rem}.purchase-description br{display:block;content:"";margin-top:.45rem}</style><script>(function(){
   if (window.__chocolateTheme) return; window.__chocolateTheme = true;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function addToCart(id, btn){
@@ -92,7 +92,7 @@ salla-product-card,.s-product-card-entry{background:transparent!important;border
   }
   function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function amount(v){ if (v && typeof v === 'object') v = v.amount; return v; }
-  function money(v){ v = amount(v); if (v == null || v === '') return ''; try { if (window.salla && salla.money) return salla.money(v); } catch(e){} return v + ' ر.س'; }
+  function money(v){ v = amount(v); if (v == null || v === '') return ''; var n = Number(v); return (Number.isFinite(n) ? n.toLocaleString('ar-SA', {maximumFractionDigits:2}) : String(v)) + ' ر.س'; }
   function priceOf(p){ return p.is_on_sale && p.sale_price ? p.sale_price : (p.price != null ? p.price : p.starting_price); }
   function imageOf(p){ return (p.image && (p.image.url || p.image)) || p.thumbnail || (p.images && p.images[0] && p.images[0].url) || ''; }
   function whenSalla(fn){ var done = false, go = function(){ if (done) return; done = true; fn(); }; if (window.salla && salla.onReady){ try { salla.onReady(go); } catch(e){ go(); } } else { window.addEventListener('load', go); } setTimeout(function(){ if (!done && window.salla) go(); }, 4000); }
