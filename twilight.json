@@ -161,24 +161,65 @@
         {
           "id": "moods",
           "type": "collection",
+          "format": "collection",
           "label": "خيارات المود (اسم + منتج لكل خيار)",
-          "max_items": 8,
+          "item_label": "مود",
+          "icon": "sicon-list-add",
+          "required": false,
+          "minLength": 0,
+          "maxLength": 8,
+          "value": [
+            {
+              "moods.label": "شوكولاتة",
+              "moods.product": []
+            },
+            {
+              "moods.label": "كراميل",
+              "moods.product": []
+            },
+            {
+              "moods.label": "مقرمش",
+              "moods.product": []
+            },
+            {
+              "moods.label": "بيكان",
+              "moods.product": []
+            },
+            {
+              "moods.label": "كيك",
+              "moods.product": []
+            },
+            {
+              "moods.label": "غني",
+              "moods.product": []
+            },
+            {
+              "moods.label": "مشاركة",
+              "moods.product": []
+            }
+          ],
           "fields": [
             {
-              "id": "label",
+              "id": "moods.label",
               "type": "string",
               "format": "text",
               "label": "اسم المود",
-              "required": true,
-              "value": ""
+              "value": "",
+              "multilanguage": false,
+              "required": false
             },
             {
-              "id": "product",
+              "id": "moods.product",
               "type": "items",
               "format": "dropdown-list",
               "label": "المنتج المربوط بهذا المود",
+              "icon": "sicon-keyboard_arrow_down",
+              "selected": [],
+              "options": [],
               "source": "products",
-              "required": true,
+              "multichoice": false,
+              "searchable": true,
+              "required": false,
               "value": []
             }
           ]
@@ -242,11 +283,56 @@
         },
         {
           "id": "url_one",
-          "type": "string",
-          "format": "text",
-          "label": "رابط الصورة الطويلة",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط الصورة الطويلة (منتج، تصنيف، صفحة، رابط خارجي…)",
+          "format": "variable-list",
+          "value": [],
           "required": false,
-          "value": "/products"
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "مقالة",
+              "key": "blog_articles",
+              "value": "blog_articles"
+            },
+            {
+              "label": "تصنيف مدونة",
+              "key": "blog_categories",
+              "value": "blog_categories"
+            },
+            {
+              "label": "التخفيضات",
+              "key": "offers_link",
+              "value": "offers_link"
+            },
+            {
+              "label": "المدونة",
+              "key": "blog_link",
+              "value": "blog_link"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
         },
         {
           "id": "copy",
@@ -282,11 +368,56 @@
         },
         {
           "id": "url_two",
-          "type": "string",
-          "format": "text",
-          "label": "رابط الصورة العريضة",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط الصورة العريضة (منتج، تصنيف، صفحة، رابط خارجي…)",
+          "format": "variable-list",
+          "value": [],
           "required": false,
-          "value": "/products"
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "مقالة",
+              "key": "blog_articles",
+              "value": "blog_articles"
+            },
+            {
+              "label": "تصنيف مدونة",
+              "key": "blog_categories",
+              "value": "blog_categories"
+            },
+            {
+              "label": "التخفيضات",
+              "key": "offers_link",
+              "value": "offers_link"
+            },
+            {
+              "label": "المدونة",
+              "key": "blog_link",
+              "value": "blog_link"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
         }
       ]
     },
@@ -339,6 +470,59 @@
           "label": "نص الرابط",
           "required": false,
           "value": "كل المنتجات"
+        },
+        {
+          "id": "cta_url",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط الزر (منتج، تصنيف، صفحة، رابط خارجي…)",
+          "format": "variable-list",
+          "value": [],
+          "required": false,
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "مقالة",
+              "key": "blog_articles",
+              "value": "blog_articles"
+            },
+            {
+              "label": "تصنيف مدونة",
+              "key": "blog_categories",
+              "value": "blog_categories"
+            },
+            {
+              "label": "التخفيضات",
+              "key": "offers_link",
+              "value": "offers_link"
+            },
+            {
+              "label": "المدونة",
+              "key": "blog_link",
+              "value": "blog_link"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
         }
       ]
     },
@@ -407,6 +591,59 @@
           "label": "نص الزر",
           "required": false,
           "value": "شوف البراوكيز"
+        },
+        {
+          "id": "cta_url",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط الزر (اتركيه فاضي ليفتح المنتج المختار)",
+          "format": "variable-list",
+          "value": [],
+          "required": false,
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "مقالة",
+              "key": "blog_articles",
+              "value": "blog_articles"
+            },
+            {
+              "label": "تصنيف مدونة",
+              "key": "blog_categories",
+              "value": "blog_categories"
+            },
+            {
+              "label": "التخفيضات",
+              "key": "offers_link",
+              "value": "offers_link"
+            },
+            {
+              "label": "المدونة",
+              "key": "blog_link",
+              "value": "blog_link"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
         }
       ]
     },
@@ -508,11 +745,56 @@
         },
         {
           "id": "cta_url",
-          "type": "string",
-          "format": "text",
-          "label": "الرابط",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط الزر (منتج، تصنيف، صفحة، رابط خارجي…)",
+          "format": "variable-list",
+          "value": [],
           "required": false,
-          "value": "/products"
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "مقالة",
+              "key": "blog_articles",
+              "value": "blog_articles"
+            },
+            {
+              "label": "تصنيف مدونة",
+              "key": "blog_categories",
+              "value": "blog_categories"
+            },
+            {
+              "label": "التخفيضات",
+              "key": "offers_link",
+              "value": "offers_link"
+            },
+            {
+              "label": "المدونة",
+              "key": "blog_link",
+              "value": "blog_link"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
         }
       ]
     }
