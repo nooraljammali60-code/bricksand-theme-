@@ -43,13 +43,82 @@ salla-products-list .s-products-list-wrapper>*:nth-child(3n+2),salla-products-li
 
 /* Desktop mood orbit: nodes circle the product photo. */
 @media(min-width:901px){.mood-section{min-height:auto;padding-bottom:4rem}.orbit-wrap{position:absolute!important;inset:0!important;height:auto!important;margin:0!important}.orbit-stage{position:relative;display:block;height:46rem;max-width:72rem;margin:3rem auto 0}.orbit-track{position:absolute!important;inset:0;display:block!important;overflow:visible!important;padding:0!important;animation:orbitSpin 100s linear infinite}.orbit-node{position:absolute!important;top:50%!important;left:50%!important;margin:-3.25rem 0 0 -3.25rem!important;width:6.5rem!important;height:6.5rem!important;flex:none!important;transform:rotate(calc(var(--orbit-index) * var(--orbit-angle,51.43deg))) translateX(20.5rem) rotate(calc(var(--orbit-index) * var(--orbit-angle,51.43deg) * -1))!important}.orbit-node>span,.orbit-node>b{animation:orbitSpin 100s linear infinite reverse}.orbit-node>b{display:block}.orbit-node[aria-hidden="true"],.orbit-track>.orbit-node:nth-child(n+8){display:none!important}.orbit-focus{position:absolute!important;inset:0!important;margin:auto!important;width:30rem!important;height:30rem!important;border-radius:50%}.mood-section.is-paused .orbit-track,.mood-section.is-paused .orbit-node>*,.orbit-stage:hover .orbit-track,.orbit-stage:hover .orbit-node>*{animation-play-state:paused}.orbit-controls{margin-top:1.5rem}}@media(min-width:901px) and (prefers-reduced-motion:reduce){.orbit-track,.orbit-node>*{animation:none!important}}
+</style><style id="bricksand-parity">/* Preview parity: mood loading, preview-style cards everywhere, preview product page */
+body{background:var(--background)!important;color:var(--foreground)}
+[data-auto-wait] .orbit-stage,[data-auto-wait] .orbit-controls{visibility:hidden}
+.product-card{background:transparent!important;box-shadow:none!important;border:0!important}
+.product-card>button,.product-card>.chocolate-add{display:flex!important;align-items:center;justify-content:center;gap:.5rem;width:100%!important;min-height:2.6rem;margin:0!important;background:transparent!important;color:var(--ink)!important;border:0!important;border-top:1px solid var(--border)!important;border-radius:0!important;box-shadow:none!important;font-weight:600}
+.product-card>button:hover{background:var(--paper)!important}.product-card>button svg{width:1rem;height:1rem}
+.product-media{border-radius:0!important}
+/* Native Salla cards (category, search, wishlist) dressed exactly like the preview card */
+salla-product-card,.s-product-card-entry{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
+.s-product-card-image,.s-product-card-image-container{position:relative!important;height:26rem!important;aspect-ratio:auto!important;border-radius:0!important;background:var(--muted)!important}
+.s-product-card-image img{border-radius:0!important}
+.s-product-card-content{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:space-between!important;align-items:flex-start!important;gap:.5rem 1rem!important;padding:1rem 0 0!important;background:transparent!important}
+.s-product-card-content-main{flex:1 1 60%!important;min-width:0!important}
+.s-product-card-content-title,.s-product-card-content-title a{min-height:0!important;font:600 1rem "Noto Kufi Arabic",sans-serif!important;color:var(--ink)!important}
+.s-product-card-content-subtitle{color:var(--muted-foreground)!important;font-size:.75rem!important}
+.s-product-card-content-sub{flex:0 0 auto!important;margin:0!important}
+.s-product-card-price,.s-product-card-sale-price h4,.s-product-card-content-sub h4{margin:0!important;color:var(--ink)!important;font-weight:700!important;font-size:1rem!important;white-space:nowrap}
+.s-product-card-content-footer{flex:1 1 100%!important;margin-top:.5rem!important}
+.s-product-card-content-footer salla-add-product-button,.s-product-card-content-footer salla-add-product-button button,.s-product-card-content-footer .s-button-element,.s-product-card-add-button{display:flex!important;width:100%!important;min-height:2.6rem!important;margin:0!important;align-items:center;justify-content:center;background:transparent!important;color:var(--ink)!important;border:0!important;border-top:1px solid var(--border)!important;border-radius:0!important;box-shadow:none!important;font-weight:600!important}
+.s-product-card-wishlist-btn{background:var(--paper)!important;border:0!important;box-shadow:none!important;color:var(--plum)!important}
+.s-product-card-promotion-title{background:var(--paper)!important;color:var(--ink)!important;border-radius:0!important;font-size:.68rem!important}
+/* Product page */
+.product-page{max-width:none;margin:0}.product-gallery{min-width:0}.gallery-thumbs button.is-active{border-color:var(--accent)}
+.purchase-panel>span{font:600 .68rem "Noto Kufi Arabic",sans-serif;letter-spacing:.2em;color:var(--muted-foreground)}
+.purchase-panel>p{color:var(--muted-foreground)}
+.purchase-price{display:block;font:700 1.8rem "Noto Kufi Arabic",sans-serif;margin:1.5rem 0 .4rem;color:var(--ink)}.purchase-price del{font-size:1rem;color:var(--muted-foreground);margin-inline-start:.6rem}
+.purchase-tax{display:block;color:var(--muted-foreground);font-size:.75rem;margin-bottom:1rem}
+.purchase-actions{align-items:stretch}.purchase-actions .quantity salla-quantity-input{display:block}
+.purchase-actions salla-quantity-input .s-quantity-input-container{display:flex;align-items:center;gap:.7rem;border:0!important;background:transparent!important}
+.purchase-actions salla-quantity-input button{width:2.25rem!important;height:2.25rem!important;border:1px solid var(--border)!important;border-radius:6px!important;background:transparent!important;color:var(--ink)!important}
+.purchase-actions salla-quantity-input input{width:2rem!important;border:0!important;background:transparent!important;text-align:center;font-weight:700}
+.purchase-actions salla-add-product-button{flex:1;display:block}
+.purchase-actions salla-add-product-button button,.purchase-actions salla-add-product-button .s-button-element{display:flex!important;align-items:center;justify-content:center;gap:.5rem;width:100%!important;height:2.5rem!important;min-height:2.5rem!important;background:var(--plum)!important;color:#fff!important;border:0!important;border-radius:6px!important;font-weight:600!important}
+.purchase-actions salla-add-product-button svg{width:1rem;height:1rem}
+.purchase-description{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--border);line-height:2;color:var(--ink);font-size:.92rem}
+.zn-product-options{margin-top:1rem}.product-reviews{padding-block:2rem}
+.related .product-grid:empty{min-height:10rem}
+@media(max-width:560px){.s-product-card-image,.s-product-card-image-container{height:17rem!important}.s-product-card-content{display:block!important}.s-product-card-content-title,.s-product-card-content-title a{font-size:.82rem!important}.s-product-card-content-sub{margin-top:.4rem!important}.s-product-card-content-footer salla-add-product-button button{font-size:.75rem!important}}
 </style></head><body class="site-shell {% hook 'body:classes' %}">{% hook 'body:start' %}{% component 'header.header' %}<main id="main-content">{% block content %}{% endblock %}</main>{% component 'footer.footer' %}<salla-add-product-toast></salla-add-product-toast>{% block scripts %}{% endblock %}{% hook 'body:end' %}<script>(function(){
   if (window.__chocolateTheme) return; window.__chocolateTheme = true;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function addToCart(id, btn){
-    if (!id) return;
-    if (window.salla && salla.cart && salla.cart.addItem){ if(btn) btn.disabled = true; Promise.resolve(salla.cart.addItem(id)).finally(function(){ if(btn) btn.disabled = false; }); }
-    else location.href = '/cart';
+    var url = btn && btn.getAttribute('data-url');
+    if (!id){ if (url) location.href = url; return; }
+    if (window.salla && salla.cart && salla.cart.addItem){ if(btn) btn.disabled = true; Promise.resolve(salla.cart.addItem(id)).catch(function(){ if (url) location.href = url; }).finally(function(){ if(btn) btn.disabled = false; }); }
+    else location.href = url || '/cart';
+  }
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function amount(v){ if (v && typeof v === 'object') v = v.amount; return v; }
+  function money(v){ v = amount(v); if (v == null || v === '') return ''; try { if (window.salla && salla.money) return salla.money(v); } catch(e){} return v + ' ر.س'; }
+  function priceOf(p){ return p.is_on_sale && p.sale_price ? p.sale_price : (p.price != null ? p.price : p.starting_price); }
+  function imageOf(p){ return (p.image && (p.image.url || p.image)) || p.thumbnail || (p.images && p.images[0] && p.images[0].url) || ''; }
+  function whenSalla(fn){ var done = false, go = function(){ if (done) return; done = true; fn(); }; if (window.salla && salla.onReady){ try { salla.onReady(go); } catch(e){ go(); } } else { window.addEventListener('load', go); } setTimeout(function(){ if (!done && window.salla) go(); }, 4000); }
+  function fetchProducts(source, value, limit){
+    return new Promise(function(resolve){ whenSalla(function(){
+      var api = window.salla && ((salla.product && salla.product.fetch) ? salla.product : (salla.api && salla.api.product));
+      if (!api || !api.fetch) return resolve([]);
+      var q = { source: source, limit: limit }; if (value) q.source_value = value;
+      Promise.resolve(api.fetch(q)).then(function(r){ resolve((r && (r.data || r)) || []); }).catch(function(){ resolve([]); });
+    }); });
+  }
+  var ARROW = '<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M7 17V7h10"></path><path d="M17 17 7 7"></path></svg>';
+  var PLUS = '<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>';
+  function cardHtml(p, i){
+    var tag = p.promotion_title || (p.category && p.category.name) || '';
+    return '<article class="group product-card product-card-' + (i % 4) + '"><a class="product-media" href="' + esc(p.url) + '"><img src="' + esc(imageOf(p)) + '" alt="' + esc(p.name) + '" loading="lazy">' + (tag ? '<span>' + esc(tag) + '</span>' : '') + ARROW + '</a><div class="product-info"><div><h3><a href="' + esc(p.url) + '">' + esc(p.name) + '</a></h3>' + (p.subtitle ? '<small>' + esc(p.subtitle) + '</small>' : '') + '</div><strong>' + esc(money(priceOf(p))) + '</strong></div><button type="button" class="h-9 px-4 py-2 chocolate-add" data-add-to-cart="' + esc(p.id) + '" data-url="' + esc(p.url) + '">' + PLUS + ' أضف للسلة</button></article>';
+  }
+  function fillGrids(){
+    document.querySelectorAll('[data-zn-products]').forEach(function(grid){
+      var limit = Number(grid.dataset.limit || 4), exclude = grid.dataset.exclude;
+      var render = function(list){ list = (list || []).filter(function(p){ return String(p.id) !== String(exclude); }).slice(0, limit); if (!list.length) return false; grid.innerHTML = list.map(cardHtml).join(''); return true; };
+      fetchProducts(grid.dataset.source || 'latest', grid.dataset.sourceValue, limit + 1).then(function(list){
+        if (render(list)) return;
+        if (grid.dataset.source !== 'latest') fetchProducts('latest', '', limit + 1).then(function(l){ if (!render(l)){ var sec = grid.closest('section'); if (sec && sec.classList.contains('related')) sec.hidden = true; } });
+      });
+    });
   }
   function setBadge(n){ document.querySelectorAll('[data-cart-badge]').forEach(function(b){ b.textContent = n; b.hidden = !n; }); }
   function init(){
@@ -77,11 +146,28 @@ salla-products-list .s-products-list-wrapper>*:nth-child(3n+2),salla-products-li
       if (thumb){
         var image = document.querySelector('#znProductMainImage');
         if (image){ image.src = thumb.dataset.src; image.alt = thumb.dataset.alt || ''; }
-        document.querySelectorAll('[data-zn-thumb]').forEach(function(item){ item.classList.toggle('is-active', item === thumb); });
+        document.querySelectorAll('[data-zn-thumb]').forEach(function(item){ item.classList.toggle('is-active', item === thumb); item.classList.toggle('active', item === thumb); });
       }
     });
 
+    fillGrids();
     document.querySelectorAll('[data-mood-orbit]').forEach(function(root){
+      var stage0 = root.querySelector('[data-auto-source]');
+      if (!stage0){ initMood(root); return; }
+      var lim = Number(stage0.dataset.autoLimit || 7);
+      fetchProducts(stage0.dataset.autoSource || 'latest', '', lim).then(function(list){
+        list = (list || []).slice(0, lim);
+        if (!list.length){ root.hidden = true; return; }
+        root.querySelectorAll('[data-mood-node]').forEach(function(n){
+          var k = Number(n.dataset.moodNode); if (k >= list.length){ n.remove(); return; }
+          var p = list[k]; n.dataset.id = p.id; n.dataset.image = imageOf(p); n.dataset.name = p.name; n.dataset.price = money(priceOf(p)); n.dataset.url = p.url; n.setAttribute('aria-label', p.name);
+          n.style.setProperty('--orbit-angle', (360 / list.length) + 'deg');
+        });
+        root.removeAttribute('data-auto-wait');
+        initMood(root, true);
+      });
+    });
+    function initMood(root, fresh){
       var nodes = Array.prototype.slice.call(root.querySelectorAll('[data-mood-node]'));
       if (!nodes.length) return;
       var q = function(s){ return root.querySelector(s); };
@@ -95,10 +181,11 @@ salla-products-list .s-products-list-wrapper>*:nth-child(3n+2),salla-products-li
         if (price) price.textContent = node.dataset.price;
         if (small) small.textContent = node.dataset.small;
         if (link) link.href = node.dataset.url;
-        if (add) add.setAttribute('data-add-to-cart', node.dataset.id);
+        if (add){ add.setAttribute('data-add-to-cart', node.dataset.id); add.setAttribute('data-url', node.dataset.url || ''); }
         if (focus){ focus.style.animation = 'none'; void focus.offsetWidth; focus.style.animation = ''; }
       }
       nodes.forEach(function(n){ n.addEventListener('click', function(){ choose(Number(n.dataset.moodNode)); }); });
+      if (fresh) choose(0);
       var previous = q('[data-mood-prev]'), next = q('[data-mood-next]'), surprise = q('[data-mood-surprise]');
       if (previous) previous.addEventListener('click', function(){ choose(active - 1); });
       if (next) next.addEventListener('click', function(){ choose(active + 1); });
@@ -118,7 +205,7 @@ salla-products-list .s-products-list-wrapper>*:nth-child(3n+2),salla-products-li
           if (rtl){ track.scrollLeft -= dt * .035; if (track.scrollLeft <= -half) track.scrollLeft += half; if (track.scrollLeft >= 0) track.scrollLeft -= half; }
           else { track.scrollLeft += dt * .035; if (track.scrollLeft >= half) track.scrollLeft -= half; } }
         requestAnimationFrame(step); })(0);
-    });
+    }
 
     if (window.salla){
       try { salla.onReady && salla.onReady(function(){ try { var c = salla.config.get('cart'); if (c && c.count) setBadge(c.count); } catch(e){} }); } catch(e){}
