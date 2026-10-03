@@ -20,7 +20,7 @@
     {% if product.category %}<span>{{ product.category.name }}</span>{% endif %}
     <h1>{{ product.name }}</h1>
     {% if product.subtitle %}<p>{{ product.subtitle }}</p>{% endif %}
-    <strong class="purchase-price">{% if product.is_on_sale %}{{ product.sale_price|money }} <del>{{ product.regular_price|money }}</del>{% else %}{{ product.starting_price ? product.starting_price|money : product.price|money }}{% endif %}</strong>
+    <div class="purchase-price">{% if product.is_on_sale %}<strong>{{ product.sale_price|money|raw }}</strong><del>{{ product.regular_price|money|raw }}</del>{% else %}<strong>{% if product.starting_price %}{{ product.starting_price|money|raw }}{% else %}{{ product.price|money|raw }}{% endif %}</strong>{% endif %}</div>
     {% if product.is_taxable %}<small class="purchase-tax">{{ trans('pages.products.tax_included') }}</small>{% endif %}
 
     {% if product.has_metadata %}<salla-metadata></salla-metadata>{% endif %}
