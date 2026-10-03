@@ -170,17 +170,26 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
       var stage0 = root.querySelector('[data-auto-source]');
       if (!stage0){ initMood(root); return; }
       var lim = Number(stage0.dataset.autoLimit || 7);
+      var partial = stage0.hasAttribute('data-auto-partial');
+      var done = function(){ root.removeAttribute('data-auto-wait'); initMood(root, true); };
       fetchProducts(stage0.dataset.autoSource || 'latest', '', lim).then(function(list){
         list = (list || []).slice(0, lim);
-        if (!list.length){ root.hidden = true; return; }
-        root.querySelectorAll('[data-mood-node]').forEach(function(n){
-          var k = Number(n.dataset.moodNode); if (k >= list.length){ n.remove(); return; }
-          var p = list[k]; n.dataset.id = p.id; n.dataset.image = imageOf(p); n.dataset.name = p.name; n.dataset.price = money(priceOf(p)); n.dataset.url = p.url; n.setAttribute('aria-label', p.name);
-          n.style.setProperty('--orbit-angle', (360 / list.length) + 'deg');
+        var nodes = root.querySelectorAll('[data-mood-node]');
+        if (!list.length){ if (partial && root.querySelector('[data-mood-node][data-id]')){ done(); } else { root.hidden = true; } return; }
+        nodes.forEach(function(n){
+          var k = Number(n.dataset.moodNode);
+          if (partial){
+            if (n.dataset.id) return;
+            var p = list[k % list.length];
+          } else {
+            if (k >= list.length){ n.remove(); return; }
+            var p = list[k];
+            n.style.setProperty('--orbit-angle', (360 / list.length) + 'deg');
+          }
+          n.dataset.id = p.id; n.dataset.image = imageOf(p); n.dataset.name = p.name; n.dataset.price = money(priceOf(p)); n.dataset.url = p.url; n.setAttribute('aria-label', p.name);
         });
-        root.removeAttribute('data-auto-wait');
-        initMood(root, true);
-      });
+        done();
+      }, function(){ if (partial) done(); else root.hidden = true; });
     });
     function initMood(root, fresh){
       var nodes = Array.prototype.slice.call(root.querySelectorAll('[data-mood-node]'));
