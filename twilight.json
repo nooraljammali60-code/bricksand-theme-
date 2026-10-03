@@ -159,23 +159,29 @@
           "value": "اختَر النكهة اللي تشبه مودك واسحب للتنقل"
         },
         {
-          "id": "products",
-          "type": "items",
-          "format": "dropdown-list",
-          "label": "منتجات المود (حتى 8)",
-          "source": "products",
-          "multichoice": true,
-          "searchable": true,
-          "required": false,
-          "value": []
-        },
-        {
-          "id": "labels",
-          "type": "string",
-          "format": "text",
-          "label": "أسماء الدوائر (افصلي بفاصلة)",
-          "required": false,
-          "value": "شوكولاتة,كراميل,مقرمش,بيكان,كيك,غني,مشاركة"
+          "id": "moods",
+          "type": "collection",
+          "label": "خيارات المود (اسم + منتج لكل خيار)",
+          "max_items": 8,
+          "fields": [
+            {
+              "id": "label",
+              "type": "string",
+              "format": "text",
+              "label": "اسم المود",
+              "required": true,
+              "value": ""
+            },
+            {
+              "id": "product",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "المنتج المربوط بهذا المود",
+              "source": "products",
+              "required": true,
+              "value": []
+            }
+          ]
         },
         {
           "id": "cta_label",
