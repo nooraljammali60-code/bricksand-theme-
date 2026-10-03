@@ -1,28 +1,62 @@
-{% extends "layouts.master" %}{% block content %}<div class="product-breadcrumb shell"><nav class="breadcrumbs" aria-label="مسار التنقل"><salla-breadcrumb></salla-breadcrumb></nav></div>
-<div class="s-blocks-wrapper s-before-product-info !mt-0">{% hook 'product.single.before_product_info' %}</div>
-<section class="product-detail-page shell" id="product-{{ product.id }}"><div class="product-gallery-page zn-product-gallery"><div class="product-main-media">{% if product.promotion_title %}<span class="product-media-tag">{{ product.promotion_title }}</span>{% endif %}<img id="znProductMainImage" src="{{ product.image.url }}" alt="{{ product.image.alt ?: product.name }}"/></div>{% if product.images|length > 1 %}<div class="product-thumbnails">{% for image in product.images %}{% if image.type == 'image' %}<button type="button" data-zn-thumb data-src="{{ image.url }}" data-alt="{{ image.alt }}" class="{{ loop.first ? 'is-active' : '' }}"><img src="{{ image.url }}" loading="{{ loop.index < 5 ? 'eager' : 'lazy' }}" alt="{{ image.alt }}"/></button>{% endif %}{% endfor %}</div>{% endif %}</div>
-<div class="product-info-page">{% if product.category %}<p class="product-category">{{ product.category.name }}</p>{% endif %}<h1>{{ product.name }}</h1><div class="product-price-line">{% if product.is_on_sale %}<strong>{{ product.sale_price|money }}</strong><del>{{ product.regular_price|money }}</del>{% else %}<strong>{{ product.starting_price ? product.starting_price|money : product.price|money }}</strong>{% endif %}</div>{% if product.is_taxable %}<small class="color-grey">{{ trans('pages.products.tax_included') }}</small>{% endif %}<salla-social-share data-testid="store-product-social-share" class="zn-product-share" aria-label="social share"></salla-social-share>{% if product.subtitle %}<p class="product-description">{{ product.subtitle }}</p>{% endif %}
-<salla-installment data-testid="store-product-installment" price="{{ product.price }}"></salla-installment>
-{% if product.has_metadata %}<salla-metadata data-testid="store-product-metadata"></salla-metadata>{% endif %}
-<form data-testid="store-product-form" class="form product-form" enctype="multipart/form-data" method="post" onsubmit="return salla.form.onSubmit('cart.addItem', event)">
-<input type="hidden" name="id" value="{{ product.id }}">
-{% hook 'product:single.form.start' %}
-{% include 'pages.partials.product.options' %}
-{% hook 'product:single.form.end' %}
-<div class="product-buy-row">
-{% if product.is_hidden_quantity or product.type == 'booking' %}
-<input type="hidden" value="1" name="quantity" aria-label="{{ trans('chocolate.quantity') }}"/>
-{% else %}
-<salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="{{ trans('chocolate.quantity') }}"></salla-quantity-input>
-{% endif %}
-<salla-add-product-button data-testid="store-product-add-to-cart" {{ product.can_quick_buy ? 'quick-buy' : '' }} {{ product.is_require_shipping ? 'required-shipping' : '' }}
-amount="{{ product.base_currency_price }}" product-status="{{ product.status }}" product-type="{{ product.type }}" product-id="{{ product.id }}" type="submit" width="wide"
-{% if product.notify_availability %}{{ product.notify_availability.subscribed ? 'is-subscribed' : '' }} channels="{{ product.notify_availability.channels|join(',') }}" subscribed-options="{{ product.notify_availability.subscribed_options|json_encode }}" {{ product.notify_availability.options ? 'notify-options-availability' : '' }}{% endif %}>{{ product.add_to_cart_label }}</salla-add-product-button>
+{% extends "layouts.master" %}
+{% block content %}
+<div class="s-blocks-wrapper s-before-product-info">{% hook 'product.single.before_product_info' %}</div>
+<div class="product-page" id="product-{{ product.id }}">
+  <div class="product-gallery">
+    <div class="gallery-main">
+      <img id="znProductMainImage" src="{{ product.image.url }}" alt="{{ product.image.alt ?: product.name }}">
+      {% if product.promotion_title %}<span>{{ product.promotion_title }}</span>{% elseif product.category %}<span>{{ product.category.name }}</span>{% endif %}
+    </div>
+    {% if product.images|length > 1 %}
+    <div class="gallery-thumbs">
+      {% for image in product.images %}{% if image.type == 'image' %}
+      <button type="button" data-zn-thumb data-src="{{ image.url }}" data-alt="{{ image.alt ?: product.name }}" class="{{ loop.first ? 'active is-active' : '' }}" aria-label="{{ product.name }} — صورة {{ loop.index }}"><img src="{{ image.url }}" alt="" loading="{{ loop.index < 5 ? 'eager' : 'lazy' }}"></button>
+      {% endif %}{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <aside class="purchase-panel">
+    {% if product.category %}<span>{{ product.category.name }}</span>{% endif %}
+    <h1>{{ product.name }}</h1>
+    {% if product.subtitle %}<p>{{ product.subtitle }}</p>{% endif %}
+    <strong class="purchase-price">{% if product.is_on_sale %}{{ product.sale_price|money }} <del>{{ product.regular_price|money }}</del>{% else %}{{ product.starting_price ? product.starting_price|money : product.price|money }}{% endif %}</strong>
+    {% if product.is_taxable %}<small class="purchase-tax">{{ trans('pages.products.tax_included') }}</small>{% endif %}
+
+    {% if product.has_metadata %}<salla-metadata></salla-metadata>{% endif %}
+
+    <form class="product-form" enctype="multipart/form-data" method="post" onsubmit="return salla.form.onSubmit('cart.addItem', event)">
+      <input type="hidden" name="id" value="{{ product.id }}">
+      {% hook 'product:single.form.start' %}
+      {% include 'pages.partials.product.options' %}
+      {% hook 'product:single.form.end' %}
+      <div class="purchase-actions">
+        {% if product.is_hidden_quantity or product.type == 'booking' %}
+        <input type="hidden" value="1" name="quantity">
+        {% else %}
+        <div class="quantity"><salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="الكمية"></salla-quantity-input></div>
+        {% endif %}
+        <salla-add-product-button {{ product.can_quick_buy ? 'quick-buy' : '' }} {{ product.is_require_shipping ? 'required-shipping' : '' }} amount="{{ product.base_currency_price }}" product-status="{{ product.status }}" product-type="{{ product.type }}" product-id="{{ product.id }}" type="submit" width="wide"
+          {% if product.notify_availability %}{{ product.notify_availability.subscribed ? 'is-subscribed' : '' }} channels="{{ product.notify_availability.channels|join(',') }}" subscribed-options="{{ product.notify_availability.subscribed_options|json_encode }}" {{ product.notify_availability.options ? 'notify-options-availability' : '' }}{% endif %}>
+          <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+          أضف للسلة
+        </salla-add-product-button>
+      </div>
+    </form>
+
+    <salla-installment price="{{ product.price }}"></salla-installment>
+
+    {% if product.description %}
+    <div class="purchase-description">{{ product.description|replace({'&nbsp;':' '})|raw }}</div>
+    {% endif %}
+  </aside>
+
+  <section class="related">
+    <div class="section-heading"><span>اقتراحات لك</span><h2>يمكن يعجبك <em>بعد</em></h2></div>
+    <div class="product-grid" data-zn-products data-source="related" data-source-value="{{ product.id }}" data-limit="3" data-exclude="{{ product.id }}" aria-live="polite"></div>
+  </section>
 </div>
-</form>
-<salla-quick-order data-testid="store-product-quick-order" class="mt-5 md:-mb-2 block"></salla-quick-order>
-{% if product.description %}<div class="product-accordions"><details open><summary>{{ trans('chocolate.product_details') }}</summary><div>{{ product.description|replace({'&nbsp;':' '})|raw }}</div></details></div>{% endif %}</div></section>
 <div class="s-blocks-wrapper s-before-reviews">{% hook 'product.single.before_customer_reviews' %}</div>
-{% if store.settings.rating.show_on_product %}<salla-comments item-id="{{ product.id }}" type="product"></salla-comments>{% endif %}<div class="s-blocks-wrapper s-before-related">{% hook 'product.single.before_product_recommendations' %}</div>
-<section class="related-products-section shell"><span class="eyebrow">{{ trans('chocolate.related') }}</span><h2>{{ trans('chocolate.selected_for_you') }}</h2><salla-products-slider source="related" source-value="{{ product.id }}"></salla-products-slider></section>
-<div class="s-blocks-wrapper s-after-related">{% hook 'product.single.after_product_recommendations' %}</div>{% endblock %}{% block scripts %}<script defer src="{{ 'product.js'|asset }}"></script>{% endblock %}
+{% if store.settings.rating.show_on_product %}<div class="shell product-reviews"><salla-comments item-id="{{ product.id }}" type="product"></salla-comments></div>{% endif %}
+<div class="s-blocks-wrapper s-after-related">{% hook 'product.single.after_product_recommendations' %}</div>
+{% endblock %}
