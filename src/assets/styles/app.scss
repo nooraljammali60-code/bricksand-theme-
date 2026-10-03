@@ -43,3 +43,42 @@ salla-products-list .s-products-list-wrapper>*:nth-child(3n+2),salla-products-li
 
 /* Desktop mood orbit: nodes circle the product photo. */
 @media(min-width:901px){.mood-section{min-height:auto;padding-bottom:4rem}.orbit-wrap{position:absolute!important;inset:0!important;height:auto!important;margin:0!important}.orbit-stage{position:relative;display:block;height:46rem;max-width:72rem;margin:3rem auto 0}.orbit-track{position:absolute!important;inset:0;display:block!important;overflow:visible!important;padding:0!important;animation:orbitSpin 100s linear infinite}.orbit-node{position:absolute!important;top:50%!important;left:50%!important;margin:-3.25rem 0 0 -3.25rem!important;width:6.5rem!important;height:6.5rem!important;flex:none!important;transform:rotate(calc(var(--orbit-index) * var(--orbit-angle,51.43deg))) translateX(20.5rem) rotate(calc(var(--orbit-index) * var(--orbit-angle,51.43deg) * -1))!important}.orbit-node>span,.orbit-node>b{animation:orbitSpin 100s linear infinite reverse}.orbit-node>b{display:block}.orbit-node[aria-hidden="true"],.orbit-track>.orbit-node:nth-child(n+8){display:none!important}.orbit-focus{position:absolute!important;inset:0!important;margin:auto!important;width:30rem!important;height:30rem!important;border-radius:50%}.mood-section.is-paused .orbit-track,.mood-section.is-paused .orbit-node>*,.orbit-stage:hover .orbit-track,.orbit-stage:hover .orbit-node>*{animation-play-state:paused}.orbit-controls{margin-top:1.5rem}}@media(min-width:901px) and (prefers-reduced-motion:reduce){.orbit-track,.orbit-node>*{animation:none!important}}
+
+/* Preview parity: mood loading, preview-style cards everywhere, preview product page */
+body{background:var(--background)!important;color:var(--foreground)}
+[data-auto-wait] .orbit-stage,[data-auto-wait] .orbit-controls{visibility:hidden}
+.product-card{background:transparent!important;box-shadow:none!important;border:0!important}
+.product-card>button,.product-card>.chocolate-add{display:flex!important;align-items:center;justify-content:center;gap:.5rem;width:100%!important;min-height:2.6rem;margin:0!important;background:transparent!important;color:var(--ink)!important;border:0!important;border-top:1px solid var(--border)!important;border-radius:0!important;box-shadow:none!important;font-weight:600}
+.product-card>button:hover{background:var(--paper)!important}.product-card>button svg{width:1rem;height:1rem}
+.product-media{border-radius:0!important}
+/* Native Salla cards (category, search, wishlist) dressed exactly like the preview card */
+salla-product-card,.s-product-card-entry{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
+.s-product-card-image,.s-product-card-image-container{position:relative!important;height:26rem!important;aspect-ratio:auto!important;border-radius:0!important;background:var(--muted)!important}
+.s-product-card-image img{border-radius:0!important}
+.s-product-card-content{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;justify-content:space-between!important;align-items:flex-start!important;gap:.5rem 1rem!important;padding:1rem 0 0!important;background:transparent!important}
+.s-product-card-content-main{flex:1 1 60%!important;min-width:0!important}
+.s-product-card-content-title,.s-product-card-content-title a{min-height:0!important;font:600 1rem "Noto Kufi Arabic",sans-serif!important;color:var(--ink)!important}
+.s-product-card-content-subtitle{color:var(--muted-foreground)!important;font-size:.75rem!important}
+.s-product-card-content-sub{flex:0 0 auto!important;margin:0!important}
+.s-product-card-price,.s-product-card-sale-price h4,.s-product-card-content-sub h4{margin:0!important;color:var(--ink)!important;font-weight:700!important;font-size:1rem!important;white-space:nowrap}
+.s-product-card-content-footer{flex:1 1 100%!important;margin-top:.5rem!important}
+.s-product-card-content-footer salla-add-product-button,.s-product-card-content-footer salla-add-product-button button,.s-product-card-content-footer .s-button-element,.s-product-card-add-button{display:flex!important;width:100%!important;min-height:2.6rem!important;margin:0!important;align-items:center;justify-content:center;background:transparent!important;color:var(--ink)!important;border:0!important;border-top:1px solid var(--border)!important;border-radius:0!important;box-shadow:none!important;font-weight:600!important}
+.s-product-card-wishlist-btn{background:var(--paper)!important;border:0!important;box-shadow:none!important;color:var(--plum)!important}
+.s-product-card-promotion-title{background:var(--paper)!important;color:var(--ink)!important;border-radius:0!important;font-size:.68rem!important}
+/* Product page */
+.product-page{max-width:none;margin:0}.product-gallery{min-width:0}.gallery-thumbs button.is-active{border-color:var(--accent)}
+.purchase-panel>span{font:600 .68rem "Noto Kufi Arabic",sans-serif;letter-spacing:.2em;color:var(--muted-foreground)}
+.purchase-panel>p{color:var(--muted-foreground)}
+.purchase-price{display:block;font:700 1.8rem "Noto Kufi Arabic",sans-serif;margin:1.5rem 0 .4rem;color:var(--ink)}.purchase-price del{font-size:1rem;color:var(--muted-foreground);margin-inline-start:.6rem}
+.purchase-tax{display:block;color:var(--muted-foreground);font-size:.75rem;margin-bottom:1rem}
+.purchase-actions{align-items:stretch}.purchase-actions .quantity salla-quantity-input{display:block}
+.purchase-actions salla-quantity-input .s-quantity-input-container{display:flex;align-items:center;gap:.7rem;border:0!important;background:transparent!important}
+.purchase-actions salla-quantity-input button{width:2.25rem!important;height:2.25rem!important;border:1px solid var(--border)!important;border-radius:6px!important;background:transparent!important;color:var(--ink)!important}
+.purchase-actions salla-quantity-input input{width:2rem!important;border:0!important;background:transparent!important;text-align:center;font-weight:700}
+.purchase-actions salla-add-product-button{flex:1;display:block}
+.purchase-actions salla-add-product-button button,.purchase-actions salla-add-product-button .s-button-element{display:flex!important;align-items:center;justify-content:center;gap:.5rem;width:100%!important;height:2.5rem!important;min-height:2.5rem!important;background:var(--plum)!important;color:#fff!important;border:0!important;border-radius:6px!important;font-weight:600!important}
+.purchase-actions salla-add-product-button svg{width:1rem;height:1rem}
+.purchase-description{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--border);line-height:2;color:var(--ink);font-size:.92rem}
+.zn-product-options{margin-top:1rem}.product-reviews{padding-block:2rem}
+.related .product-grid:empty{min-height:10rem}
+@media(max-width:560px){.s-product-card-image,.s-product-card-image-container{height:17rem!important}.s-product-card-content{display:block!important}.s-product-card-content-title,.s-product-card-content-title a{font-size:.82rem!important}.s-product-card-content-sub{margin-top:.4rem!important}.s-product-card-content-footer salla-add-product-button button{font-size:.75rem!important}}
