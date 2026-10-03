@@ -107,7 +107,6 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
   }
   function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function amount(v){ if (v && typeof v === 'object') v = v.amount != null ? v.amount : (v.price != null ? v.price : ''); if (typeof v === 'number') return v; if (v == null) return ''; var t = String(v).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/<[^>]*>?/g,' ').replace(/[a-z_\-]+=["']?[\w\-]*["']?\s*>?/gi,' ').replace(/[\u0660-\u0669]/g,function(d){ return d.charCodeAt(0) - 1632; }).replace(/[\u06f0-\u06f9]/g,function(d){ return d.charCodeAt(0) - 1776; }).replace(/\u066b/g,'.').replace(/[\u066c,\s]/g,''); var m = t.match(/\d+(?:\.\d+)?/); return m ? Number(m[0]) : ''; }
-  function fixPrices(scope){ var w = document.createTreeWalker(scope || document.body, NodeFilter.SHOW_TEXT, null), hit = [], n; while ((n = w.nextNode())) { if (/sicon|<\/?i\b|class=/.test(n.nodeValue)) hit.push(n); } hit.forEach(function(t){ var el = t.parentNode; if (!el || /^(SCRIPT|STYLE)$/.test(el.nodeName)) return; var v = money(t.nodeValue); if (v) t.nodeValue = v; }); }
   function money(v){ v = amount(v); if (v == null || v === '') return ''; var n = Number(v); return (Number.isFinite(n) ? n.toLocaleString('ar-SA', {maximumFractionDigits:2}) : String(v)) + ' ر.س'; }
   function priceOf(p){ return p.is_on_sale && p.sale_price ? p.sale_price : (p.price != null ? p.price : p.starting_price); }
   function imageOf(p){ return (p.image && (p.image.url || p.image)) || p.thumbnail || (p.images && p.images[0] && p.images[0].url) || ''; }
@@ -166,8 +165,6 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
       }
     });
 
-    fixPrices(document.body);
-    if (window.MutationObserver){ var fpT; new MutationObserver(function(){ clearTimeout(fpT); fpT = setTimeout(function(){ fixPrices(document.body); }, 60); }).observe(document.body, {childList:true, subtree:true, characterData:true}); }
     fillGrids();
     document.querySelectorAll('[data-mood-orbit]').forEach(function(root){
       var stage0 = root.querySelector('[data-auto-source]');
