@@ -20,7 +20,7 @@
     {% if product.category %}<span>{{ product.category.name }}</span>{% endif %}
     <h1>{{ product.name }}</h1>
     {% if product.subtitle %}<p>{{ product.subtitle }}</p>{% endif %}
-    <div class="purchase-price">{% if product.is_on_sale %}<strong>{{ product.sale_price|money }}</strong><del>{{ product.regular_price|money }}</del>{% else %}<strong>{% if product.starting_price %}{{ product.starting_price|money }}{% else %}{{ product.price|money }}{% endif %}</strong>{% endif %}</div>
+    <div class="purchase-price">{% if product.is_on_sale %}<strong>{{ (product.sale_price|money|striptags|replace({'class=sicon-sar>':'','sicon-sar':'','</i>':'','<i':'','&lt;':'','&gt;':''})|trim ~ ' ر.س') }}</strong><del>{{ (product.regular_price|money|striptags|replace({'class=sicon-sar>':'','sicon-sar':'','</i>':'','<i':'','&lt;':'','&gt;':''})|trim ~ ' ر.س') }}</del>{% else %}<strong>{% if product.starting_price %}{{ (product.starting_price|money|striptags|replace({'class=sicon-sar>':'','sicon-sar':'','</i>':'','<i':'','&lt;':'','&gt;':''})|trim ~ ' ر.س') }}{% else %}{{ (product.price|money|striptags|replace({'class=sicon-sar>':'','sicon-sar':'','</i>':'','<i':'','&lt;':'','&gt;':''})|trim ~ ' ر.س') }}{% endif %}</strong>{% endif %}</div>
     {% if product.is_taxable %}<small class="purchase-tax">{{ trans('pages.products.tax_included') }}</small>{% endif %}
 
     {% if product.has_metadata %}<salla-metadata></salla-metadata>{% endif %}
