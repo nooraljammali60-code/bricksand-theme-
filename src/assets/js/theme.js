@@ -6,6 +6,7 @@
     if (window.salla && salla.cart && salla.cart.addItem){ if(btn) btn.disabled = true; Promise.resolve(salla.cart.addItem(id)).finally(function(){ if(btn) btn.disabled = false; }); }
     else location.href = '/cart';
   }
+  function cleanPrice(v){ var t = String(v == null ? '' : v).replace(/<[^>]*>?/g,' ').replace(/[a-z_\-]+=["']?[\w\-]*["']?\s*>?/gi,' ').replace(/ر\.س/g,'').replace(/\s+/g,' ').trim(); return t ? t + ' ر.س' : ''; }
   function setBadge(n){ document.querySelectorAll('[data-cart-badge]').forEach(function(b){ b.textContent = n; b.hidden = !n; }); }
   function init(){
     var header = document.querySelector('[data-site-header]');
@@ -47,7 +48,7 @@
         nodes.forEach(function(n){ var on = Number(n.dataset.moodNode) === active; n.classList.toggle('is-active', on); n.setAttribute('aria-pressed', String(on)); });
         if (photo){ photo.src = node.dataset.image; photo.alt = node.dataset.name; }
         if (name) name.textContent = node.dataset.name;
-        if (price) price.textContent = node.dataset.price;
+        if (price) price.textContent = cleanPrice(node.dataset.price);
         if (small) small.textContent = node.dataset.small;
         if (link) link.href = node.dataset.url;
         if (add) add.setAttribute('data-add-to-cart', node.dataset.id);
