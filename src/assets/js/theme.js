@@ -6,7 +6,7 @@
     if (window.salla && salla.cart && salla.cart.addItem){ if(btn) btn.disabled = true; Promise.resolve(salla.cart.addItem(id)).finally(function(){ if(btn) btn.disabled = false; }); }
     else location.href = '/cart';
   }
-  function cleanPrice(v){ var t = String(v == null ? '' : v).replace(/<[^>]*>?/g,' ').replace(/[a-z_\-]+=["']?[\w\-]*["']?\s*>?/gi,' ').replace(/\u0631\.\u0633/g,'').replace(/\s+/g,' ').trim(); return t ? t + ' \u0631.\u0633' : ''; }
+  function cleanPrice(v){ var t = String(v == null ? '' : v).replace(/<[^>]*>?/g,' ').replace(/[a-z_\-]+=["']?[\w\-]*["']?\s*>?/gi,' ').replace(/\u0631\.\u0633/g,'').replace(/\s+/g,' ').trim(); return t; }
   function setBadge(n){ document.querySelectorAll('[data-cart-badge]').forEach(function(b){ b.textContent = n; b.hidden = !n; }); }
   function init(){
     var header = document.querySelector('[data-site-header]');
