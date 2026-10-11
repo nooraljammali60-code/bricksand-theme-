@@ -18,6 +18,7 @@
 
   <div class="s-blocks-wrapper s-before-products-list">{% hook 'product.index.before_products_group_with_filter' %}</div>
 
+  <salla-filters filters="{{ filters|json_encode }}"></salla-filters>
   {% hook 'product:index.items.start' %}
   <div class="product-grid catalog-grid" data-zn-products data-source="{{ page.slug }}" data-source-value="{{ page.id }}" data-limit="48" data-no-fallback aria-live="polite"></div>
   <div data-catalog-fallback hidden>
@@ -26,5 +27,6 @@
   {% hook 'product:index.items.end' %}
 
   <div class="s-blocks-wrapper s-after-products-list">{% hook 'product.index.after_products_group_with_filter' %}</div>
+  {% hook 'product.index.after_testimonials' %}
 </div>
 {% endblock %}
