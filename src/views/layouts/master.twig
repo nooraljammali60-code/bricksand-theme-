@@ -260,4 +260,9 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
-</script></body></html>
+</script>
+<salla-offer-modal></salla-offer-modal>
+<salla-search></salla-search>
+<salla-login-modal {% if store.settings.auth.email_allowed %}is-email-allowed{% endif %} {% if store.settings.auth.mobile_allowed %}is-mobile-allowed{% endif %} {% if store.settings.auth.is_email_required %}is-email-required{% endif %}></salla-login-modal>
+<salla-scopes></salla-scopes>
+</body></html>
