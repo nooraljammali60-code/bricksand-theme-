@@ -43,6 +43,7 @@
         </salla-add-product-button>
       </div>
     </form>
+    <salla-quick-order product-id="{{ product.id }}"></salla-quick-order>
 
     <salla-installment price="{{ product.price }}"></salla-installment>
 
@@ -51,6 +52,7 @@
     {% endif %}
   </aside>
 
+  {% hook 'product.single.before_product_recommendations' %}
   <section class="related">
     <div class="section-heading"><span>اقتراحات لك</span><h2>يمكن يعجبك <em>بعد</em></h2></div>
     <div class="product-grid" data-zn-products data-source="related" data-source-value="{{ product.id }}" data-limit="3" data-exclude="{{ product.id }}" aria-live="polite"></div>
