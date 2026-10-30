@@ -128,6 +128,7 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
     else location.href = url || '/cart';
   }
   function esc(v){ return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function fixUrl(u){ try { if (!u) return '#'; var x = new URL(u, location.href); if (x.host === location.host) return x.href; var path = x.pathname; var base = location.pathname.split('/').filter(Boolean)[0]; var seg = path.split('/').filter(Boolean); if (base && /^dev-/.test(base) && seg[0] !== base) path = '/' + base + path; return location.origin + path + (location.search || x.search); } catch(e){ return u || '#'; } }
   function amount(v){ if (v && typeof v === 'object') v = v.amount != null ? v.amount : (v.price != null ? v.price : ''); if (typeof v === 'number') return v; if (v == null) return ''; var t = String(v).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/<[^>]*>?/g,' ').replace(/[a-z_\-]+=["']?[\w\-]*["']?\s*>?/gi,' ').replace(/[\u0660-\u0669]/g,function(d){ return d.charCodeAt(0) - 1632; }).replace(/[\u06f0-\u06f9]/g,function(d){ return d.charCodeAt(0) - 1776; }).replace(/\u066b/g,'.').replace(/[\u066c,\s]/g,''); var m = t.match(/\d+(?:\.\d+)?/); return m ? Number(m[0]) : ''; }
   function money(v){ v = amount(v); if (v == null || v === '') return ''; var n = Number(v); return (Number.isFinite(n) ? n.toLocaleString('ar-SA', {maximumFractionDigits:2}) : String(v)); }
   function priceOf(p){ return p.is_on_sale && p.sale_price ? p.sale_price : (p.price != null ? p.price : p.starting_price); }
@@ -145,7 +146,7 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
   var PLUS = '<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>';
   function cardHtml(p, i){
     var tag = p.promotion_title || (p.category && p.category.name) || '';
-    return '<article class="group product-card product-card-' + (i % 4) + '"><a class="product-media" href="' + esc(p.url) + '"><img src="' + esc(imageOf(p)) + '" alt="' + esc(p.name) + '" loading="lazy">' + (tag ? '<span>' + esc(tag) + '</span>' : '') + ARROW + '</a><div class="product-info"><div><h3><a href="' + esc(p.url) + '">' + esc(p.name) + '</a></h3>' + (p.subtitle ? '<small>' + esc(p.subtitle) + '</small>' : '') + '</div><strong>' + esc(money(priceOf(p))) + '</strong></div><button type="button" class="h-9 px-4 py-2 chocolate-add" data-add-to-cart="' + esc(p.id) + '" data-url="' + esc(p.url) + '">' + PLUS + ' أضف للسلة</button></article>';
+    return '<article class="group product-card product-card-' + (i % 4) + '"><a class="product-media" href="' + esc(fixUrl(p.url)) + '"><img src="' + esc(imageOf(p)) + '" alt="' + esc(p.name) + '" loading="lazy">' + (tag ? '<span>' + esc(tag) + '</span>' : '') + ARROW + '</a><div class="product-info"><div><h3><a href="' + esc(fixUrl(p.url)) + '">' + esc(p.name) + '</a></h3>' + (p.subtitle ? '<small>' + esc(p.subtitle) + '</small>' : '') + '</div><strong>' + esc(money(priceOf(p))) + '</strong></div><button type="button" class="h-9 px-4 py-2 chocolate-add" data-add-to-cart="' + esc(p.id) + '" data-url="' + esc(fixUrl(p.url)) + '">' + PLUS + ' أضف للسلة</button></article>';
   }
   function fillGrids(){
     document.querySelectorAll('[data-zn-products]').forEach(function(grid){
@@ -208,7 +209,7 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
             var p = list[k];
             n.style.setProperty('--orbit-angle', (360 / list.length) + 'deg');
           }
-          n.dataset.id = p.id; n.dataset.image = imageOf(p); n.dataset.name = p.name; n.dataset.price = money(priceOf(p)); n.dataset.url = p.url; n.setAttribute('aria-label', p.name);
+          n.dataset.id = p.id; n.dataset.image = imageOf(p); n.dataset.name = p.name; n.dataset.price = money(priceOf(p)); n.dataset.url = fixUrl(p.url); n.setAttribute('aria-label', p.name);
         });
         done();
       }, function(){ if (partial) done(); else root.hidden = true; });
