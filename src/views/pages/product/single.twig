@@ -20,7 +20,7 @@
     {% if product.category %}<span>{{ product.category.name }}</span>{% endif %}
     <h1>{{ product.name }}</h1>
     {% if product.subtitle %}<p>{{ product.subtitle }}</p>{% endif %}
-    <div class="purchase-price" data-zn-price-box>{% if product.is_on_sale %}<strong data-zn-price>{{ (product.sale_price|money)|striptags|replace({'ر.س':'','SAR':''})|trim }} <span class="zn-sar" aria-hidden="true"></span></strong><del data-zn-regular>{{ (product.regular_price|money)|striptags|replace({'ر.س':'','SAR':''})|trim }} <span class="zn-sar" aria-hidden="true"></span></del>{% else %}<strong data-zn-price>{{ ((product.starting_price ?: product.price)|money)|striptags|replace({'ر.س':'','SAR':''})|trim }} <span class="zn-sar" aria-hidden="true"></span></strong><del data-zn-regular hidden></del>{% endif %}</div>
+    <div class="purchase-price" data-zn-price-box data-product-id="{{ product.id }}"><strong data-zn-price><span class="zn-sar" aria-hidden="true"></span></strong><del data-zn-regular hidden></del></div>
     {% if product.is_taxable %}<small class="purchase-tax">{{ trans('pages.products.tax_included') }}</small>{% endif %}
 
     {% if product.has_metadata %}<salla-metadata></salla-metadata>{% endif %}
