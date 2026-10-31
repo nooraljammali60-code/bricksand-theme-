@@ -1,6 +1,6 @@
 {% extends "layouts.master" %}
 {% block content %}
-{% if category and category.id %}{% set zn_src = 'categories' %}{% set zn_val = category.id %}
+{% if category and category.id %}{% set zn_src = 'category' %}{% set zn_val = category.id %}
 {% elseif brand and brand.id %}{% set zn_src = 'brands' %}{% set zn_val = brand.id %}
 {% elseif tag and tag.id %}{% set zn_src = 'tags' %}{% set zn_val = tag.id %}
 {% elseif page.slug == 'offers' %}{% set zn_src = 'offers' %}{% set zn_val = '' %}
