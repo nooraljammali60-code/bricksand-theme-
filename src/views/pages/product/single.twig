@@ -38,7 +38,7 @@
       </div>
       {% hook 'product:single.form.end' %}
       <div class="purchase-actions">
-        <salla-add-product-button {{ product.can_quick_buy ? 'quick-buy' : '' }} {{ product.is_require_shipping ? 'required-shipping' : '' }} amount="{{ product.base_currency_price }}" product-status="{{ product.status }}" product-type="{{ product.type }}" product-id="{{ product.id }}" type="submit" width="wide"
+        <salla-add-product-button {{ product.can_quick_buy ? 'quick-buy' : '' }} {{ product.is_require_shipping ? 'required-shipping' : '' }} product-status="{{ product.status }}" product-type="{{ product.type }}" product-id="{{ product.id }}" type="submit" width="wide"
           {% if product.notify_availability %}{{ product.notify_availability.subscribed ? 'is-subscribed' : '' }} channels="{{ product.notify_availability.channels|join(',') }}" subscribed-options="{{ product.notify_availability.subscribed_options|json_encode }}" {{ product.notify_availability.options ? 'notify-options-availability' : '' }}{% endif %}>
           أضف للسلة
         </salla-add-product-button>
@@ -46,7 +46,6 @@
     </form>
     <salla-quick-order product-id="{{ product.id }}"></salla-quick-order>
 
-    <salla-installment price="{{ product.base_currency_price }}"></salla-installment>
 
     {% if product.description %}
     <div class="purchase-description">{{ product.description|replace({'&nbsp;':' '})|raw }}</div>
