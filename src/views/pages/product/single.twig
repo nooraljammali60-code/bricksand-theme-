@@ -47,9 +47,11 @@
     <salla-quick-order product-id="{{ product.id }}"></salla-quick-order>
 
 
+    {% hook 'product:single.description.start' %}
     {% if product.description %}
-    <div class="purchase-description">{{ product.description|replace({'&nbsp;':' '})|raw }}</div>
+    <div class="purchase-description">{% hook 'product:single.description' %}{{ product.description|replace({'&nbsp;':' '})|raw }}</div>
     {% endif %}
+    {% hook 'product:single.description.end' %}
   </aside>
 
 </div>
