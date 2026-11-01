@@ -52,13 +52,15 @@
     {% endif %}
   </aside>
 
-  {% hook 'product.single.before_product_recommendations' %}
+</div>
+<div class="s-blocks-wrapper s-before-reviews">{% hook 'product.single.before_customer_reviews' %}</div>
+{% if store.settings.rating.show_on_product %}<div class="shell product-reviews"><salla-comments item-id="{{ product.id }}" type="product"></salla-comments></div>{% endif %}
+<div class="s-blocks-wrapper s-before-related">{% hook 'product.single.before_product_recommendations' %}</div>
+<div class="shell">
   <section class="related">
     <div class="section-heading"><span>اقتراحات لك</span><h2>يمكن يعجبك <em>بعد</em></h2></div>
     <div class="product-grid" data-zn-products data-source="related" data-source-value="{{ product.id }}" data-limit="3" data-exclude="{{ product.id }}" aria-live="polite"></div>
   </section>
 </div>
-<div class="s-blocks-wrapper s-before-reviews">{% hook 'product.single.before_customer_reviews' %}</div>
-{% if store.settings.rating.show_on_product %}<div class="shell product-reviews"><salla-comments item-id="{{ product.id }}" type="product"></salla-comments></div>{% endif %}
 <div class="s-blocks-wrapper s-after-related">{% hook 'product.single.after_product_recommendations' %}</div>
 {% endblock %}
