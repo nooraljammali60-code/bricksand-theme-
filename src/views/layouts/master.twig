@@ -151,7 +151,7 @@ salla-product-options,salla-product-options *{max-width:100%;box-sizing:border-b
   }
   function fillGrids(){
     document.querySelectorAll('[data-zn-products]').forEach(function(grid){
-      var limit = Number(grid.dataset.limit || 4), exclude = grid.dataset.exclude;
+      var limit = Number(grid.dataset.limit || 4), exclude = grid.dataset.exclude; if (grid.dataset.source === 'categories') grid.dataset.source = 'category';
       var render = function(list){ list = (list || []).filter(function(p){ return String(p.id) !== String(exclude); }).slice(0, limit); if (!list.length) return false; grid.innerHTML = list.map(cardHtml).join(''); return true; };
       fetchProducts(/^(category|categories|brands|tags|search|offers|selected|related|latest)$/.test(grid.dataset.source || '') ? grid.dataset.source : 'latest', /^(category|categories|brands|tags|search|offers|selected|related)$/.test(grid.dataset.source || '') ? grid.dataset.sourceValue : '', limit + 1).then(function(list){
         if (render(list)) return;
